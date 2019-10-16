@@ -2,9 +2,12 @@
   <artifact type="jar" name="SensorTest:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/SensorTest_jar</output-path>
     <root id="archive" name="SensorTest.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/SensorTest/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="SensorTest" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../LeJOS/lib/ev3/ev3classes.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../LeJOS/lib/ev3/dbusjava.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/dbusjava.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/ev3classes.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

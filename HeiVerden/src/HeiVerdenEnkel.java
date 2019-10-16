@@ -1,4 +1,4 @@
-package HeiVerdenEnkel;/* Programmet skriver en tekst på skjermen til EV3en, venter 500 ms.
+/* Programmet skriver en tekst på skjermen til EV3en, venter 500 ms.
 Dernest skrives en ny tekst og EV3en venter til det trykkes på en knapp
 før programmet avsluttes.
 7  */

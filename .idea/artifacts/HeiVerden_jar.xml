@@ -2,9 +2,12 @@
   <artifact type="jar" name="HeiVerden:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/HeiVerden_jar</output-path>
     <root id="archive" name="HeiVerden.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/HeiVerden/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="HeiVerden" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../LeJOS/lib/ev3/dbusjava.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../LeJOS/lib/ev3/ev3classes.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/dbusjava.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/ev3classes.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
