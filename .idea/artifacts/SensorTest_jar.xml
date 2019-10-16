@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SensorTest:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SensorTest_jar</output-path>
+    <root id="archive" name="SensorTest.jar">
+      <element id="module-output" name="SensorTest" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../LeJOS/lib/ev3/ev3classes.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../LeJOS/lib/ev3/dbusjava.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

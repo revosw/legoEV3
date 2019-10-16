@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="dbusjava">
+  <library name="LeJOS_EV3">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../../LeJOS/lib/ev3/dbusjava.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../LeJOS/lib/ev3/ev3classes.jar!/" />
