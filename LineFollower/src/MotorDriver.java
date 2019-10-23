@@ -31,8 +31,7 @@ public class MotorDriver
 
         motors = new RegulatedMotor[]{left};
         right.synchronizeWith(motors);
-        right.setAcceleration(90);
-        left.setAcceleration(90);
+
     }
 
     /**
@@ -64,8 +63,8 @@ public class MotorDriver
      * Drives backwards a short distance.
      */
     public void backwards(){
-        right.setSpeed(225);
-        left.setSpeed(225);
+        right.setSpeed(450);
+        left.setSpeed(450);
         right.startSynchronization();
         // starts the synchronization of right and left motors.
 
@@ -83,6 +82,8 @@ public class MotorDriver
      */
     public void turnLeft()
     {
+        right.setAcceleration(250);
+        left.setAcceleration(250);
         right.setSpeed(225);
         left.setSpeed(225);
         right.startSynchronization();
