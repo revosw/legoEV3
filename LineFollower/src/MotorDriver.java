@@ -31,6 +31,8 @@ public class MotorDriver
 
         motors = new RegulatedMotor[]{left};
         right.synchronizeWith(motors);
+        right.setAcceleration(90);
+        left.setAcceleration(90);
     }
 
     /**

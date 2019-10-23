@@ -2,7 +2,6 @@ import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
 import lejos.hardware.ev3.EV3;
 import lejos.hardware.lcd.TextLCD;
-import sun.awt.windows.ThemeReader;
 
 public class Main {
     public static void main(String[] args) throws Exception {
