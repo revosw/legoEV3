@@ -17,34 +17,40 @@ public class Main {
         boolean run = true;
         boolean direction = true; // true is forward, false is reverse
 
-        //TODO switch run and direction booleans in while and ifs
-        while(direction) {
+        //TODO switch run and direction booleans in while and ifs?
 
-            //noinspection ConstantConditions
-            if(run) {
+        while(run) {
+
+            while(direction) {
                 driver.forward();
-                run = !sensor.blackDetectedFront(); // sensor returns true on black
+                direction = !sensor.blackDetectedFront(); // sensor returns true on black
                 //switch direction when black is detected
             }
-
-            if(!run){
+            driver.stop();
+            while(!direction){
+                driver.backwards();
+                Thread.sleep(500);
                 driver.stop();
-                direction = false;
+                driver.turnLeft();
+            }
+
+            if(!direction){
+                driver.stop();
+                run = false;
             }
 
         }
-        while(!direction) {
 
-            //noinspection ConstantConditions
-            if(!run){
+        while(!run) {
+
+            if(!direction){
                 driver.backwards();
-                direction = sensor.blackDetectedBack(); // sensor returns true on black
+                run = sensor.blackDetectedBack(); // sensor returns true on black
             }
 
-            //noinspection ConstantConditions
-            if(run){
+            if(direction){
                 driver.stop();
-                run = true;
+                direction = true;
             }
         }
 

@@ -48,12 +48,21 @@ public class MotorDriver
         right.stop();
         right.endSynchronization();
     }
-    public void backwards() throws InterruptedException {
+    public void backwards(){
         right.setSpeed(450);
         left.setSpeed(450);
         right.startSynchronization(); // starts the synchronization of right and left motors.
-        right.backward();
-        left.backward();
+        right.rotate(-180);
+        left.rotate(-180);
+        right.endSynchronization(); //ends synch between motors.
+    }
+    public void turnLeft()
+    {
+        right.setSpeed(450);
+        left.setSpeed(450);
+        right.startSynchronization(); // starts the synchronization of right and left motors.
+        right.rotate(180);
+        left.rotate(-180);
         right.endSynchronization(); //ends synch between motors.
     }
 
