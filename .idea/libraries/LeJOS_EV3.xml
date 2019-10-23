@@ -4,7 +4,10 @@
       <root url="jar://$PROJECT_DIR$/EV3lib/dbusjava.jar!/" />
       <root url="jar://$PROJECT_DIR$/EV3lib/ev3classes.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="http://www.lejos.org/ev3/docs/index.html?overview-summary.html" />
+      <root url="file://$PROJECT_DIR$/../../LeJOS/docs/ev3" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>

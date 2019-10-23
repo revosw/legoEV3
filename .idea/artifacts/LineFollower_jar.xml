@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LineFollower:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LineFollower_jar</output-path>
+    <root id="archive" name="LineFollower.jar">
+      <element id="module-output" name="LineFollower" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/dbusjava.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/ev3classes.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
