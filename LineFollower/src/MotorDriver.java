@@ -62,8 +62,8 @@ public class MotorDriver
      * Drives backwards a short distance.
      */
     public void backwards(){
-        right.setSpeed(450);
-        left.setSpeed(450);
+        right.setSpeed(225);
+        left.setSpeed(225);
         right.startSynchronization();
         // starts the synchronization of right and left motors.
 
@@ -73,16 +73,16 @@ public class MotorDriver
         left.waitComplete();
 
         right.endSynchronization();
-        //ends synch between motors.
+        //ends sync between motors.
     }
 
     /**
-     * Turns left motor 180 deg forward and left motor 180 deg backwards, turning robot 90 degrees to the left.
+     * Turns right motor 180 deg forward and left motor 180 deg backwards, turning robot approx. 90 degrees to the left.
      */
     public void turnLeft()
     {
-        right.setSpeed(450);
-        left.setSpeed(450);
+        right.setSpeed(225);
+        left.setSpeed(225);
         right.startSynchronization();
         // starts the synchronization of right and left motors.
 
@@ -92,45 +92,8 @@ public class MotorDriver
         right.waitComplete();
         left.waitComplete();
 
-        right.endSynchronization(); //ends synch between motors.
+        right.endSynchronization(); //ends sync between motors.
     }
 
-    public void forwardWhile()
-    {
-        right.setSpeed(450);
-        left.setSpeed(450);
 
-        //Q: does synch start/end have to be inside or outside a while/if loop?
-
-        int i = 0; //while conditional
-
-        right.startSynchronization();
-
-        while(i <= 12)
-        {
-            right.rotate(90);
-            left.rotate(90);
-            i++;
-        }
-
-        right.endSynchronization();
-
-    }
-    /**
-     * Drives vehicle forward for 10 seconds.
-     * @throws Exception
-     */
-    public void forwardTenSec() throws Exception {
-
-        right.setSpeed(450);
-        left.setSpeed(450);
-
-        right.startSynchronization(); // starts the synchronization of right and left motors.
-        right.forward();
-        left.forward();
-        right.endSynchronization(); //ends synch between motors.
-        // Required to make commands between start and end execute.
-        Thread.sleep(10000); // runs previous command for 10 seconds
-        //Stop commands not required, ends when thread wakes.
-    }
 }
