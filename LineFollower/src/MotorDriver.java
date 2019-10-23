@@ -53,7 +53,7 @@ public class MotorDriver
      */
     public void stop()
     {
-        right.startSynchronization();
+        right.startSynchronization();         // starts the synchronization of right and left motors.
         left.stop();
         right.stop();
         right.endSynchronization();
@@ -77,8 +77,12 @@ public class MotorDriver
         //ends sync between motors.
     }
 
+    public void tweakTurn()
+    {
+
+    }
     /**
-     * Turns right motor 180 deg forward and left motor 180 deg backwards, turning robot approx. 90 degrees to the left.
+     * Turns right motor 300 deg forward and left motor -60 deg backwards, turning robot approx. 90 degrees to the left.
      */
     public void turnLeft()
     {
@@ -95,6 +99,4 @@ public class MotorDriver
 
         right.endSynchronization(); //ends sync between motors.
     }
-
-
 }
