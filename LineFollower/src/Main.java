@@ -13,34 +13,37 @@ public class Main {
         EV3 ev3 = (EV3) BrickFinder.getLocal();
         TextLCD lcd = ev3.getTextLCD();
 
+        lcd.drawString(sensor.getSampleString(), 0, 1);
         boolean run = true;
         boolean direction = true; // true is forward, false is reverse
 
+        //TODO switch run and direction booleans in while and ifs
         while(run) {
-            lcd.drawString(sensor.getSampleString(), 0, 1);
 
             if(direction) {
                 driver.forward();
                 direction = !sensor.blackDetectedFront(); // sensor returns true on black
                 //switch direction when black is detected
             }
+
             if(!direction){
                 driver.stop();
                 run = false;
             }
-/*            if(!direction){
-                driver.backwards();
-                Thread.sleep(1000);
-                direction = sensor.blackDetectedBack(); // sensor returns true on black
-            }*/
+
         }
+        while(!run) {
 
+            if(!direction){
+                driver.backwards();
+                direction = sensor.blackDetectedBack(); // sensor returns true on black
+            }
 
-        /*
-        while(true)
-        {
-            lcd.drawString(sensor.getSampleString(), 0, 1);
-        }*/
+            if(direction){
+                driver.stop();
+                run = true;
+            }
+        }
 
     }
 }
