@@ -28,14 +28,12 @@ public class Main {
                 //switch direction when black is detected
             }
             driver.stop();
-            driver.backwards();
-            Thread.sleep(500);
-            driver.stop();
+            //driver.backwards();
+            //Thread.sleep(500);
+            //driver.stop();
             driver.turnLeft();
             Thread.sleep(500);
             direction = true;
-
-
         }
     }
 }

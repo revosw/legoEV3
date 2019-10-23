@@ -82,15 +82,13 @@ public class MotorDriver
      */
     public void turnLeft()
     {
-        right.setAcceleration(250);
-        left.setAcceleration(250);
-        right.setSpeed(225);
-        left.setSpeed(225);
+        right.setSpeed(900);
+        left.setSpeed(900);
         right.startSynchronization();
         // starts the synchronization of right and left motors.
 
-        right.rotate(190);
-        left.rotate(-190);
+        right.rotate(300);
+        left.rotate(-60);
 
         right.waitComplete();
         left.waitComplete();
