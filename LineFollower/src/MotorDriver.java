@@ -18,6 +18,9 @@ public class MotorDriver
     private RegulatedMotor left;
     private RegulatedMotor[] motors;
 
+    /**
+     * constructor for MotorDriver class.
+     */
     public MotorDriver()
     {
 
@@ -30,6 +33,9 @@ public class MotorDriver
         right.synchronizeWith(motors);
     }
 
+    /**
+     * Drives robot forward.
+     */
     public void forward()
     {
         right.setSpeed(450);
@@ -41,6 +47,9 @@ public class MotorDriver
         right.endSynchronization();
     }
 
+    /**
+     * Stops both motors.
+     */
     public void stop()
     {
         right.startSynchronization();
@@ -48,21 +57,41 @@ public class MotorDriver
         right.stop();
         right.endSynchronization();
     }
+
+    /**
+     * Drives backwards a short distance.
+     */
     public void backwards(){
         right.setSpeed(450);
         left.setSpeed(450);
-        right.startSynchronization(); // starts the synchronization of right and left motors.
+        right.startSynchronization();
+        // starts the synchronization of right and left motors.
+
         right.rotate(-180);
         left.rotate(-180);
-        right.endSynchronization(); //ends synch between motors.
+        right.waitComplete();
+        left.waitComplete();
+
+        right.endSynchronization();
+        //ends synch between motors.
     }
+
+    /**
+     * Turns left motor 180 deg forward and left motor 180 deg backwards, turning robot 90 degrees to the left.
+     */
     public void turnLeft()
     {
         right.setSpeed(450);
         left.setSpeed(450);
-        right.startSynchronization(); // starts the synchronization of right and left motors.
-        right.rotate(180);
-        left.rotate(-180);
+        right.startSynchronization();
+        // starts the synchronization of right and left motors.
+
+        right.rotate(190);
+        left.rotate(-190);
+
+        right.waitComplete();
+        left.waitComplete();
+
         right.endSynchronization(); //ends synch between motors.
     }
 

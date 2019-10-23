@@ -2,6 +2,7 @@ import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
 import lejos.hardware.ev3.EV3;
 import lejos.hardware.lcd.TextLCD;
+import sun.awt.windows.ThemeReader;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -13,13 +14,14 @@ public class Main {
         EV3 ev3 = (EV3) BrickFinder.getLocal();
         TextLCD lcd = ev3.getTextLCD();
 
-        lcd.drawString(sensor.getSampleString(), 0, 1);
+
         boolean run = true;
         boolean direction = true; // true is forward, false is reverse
 
         //TODO switch run and direction booleans in while and ifs?
 
         while(run) {
+            lcd.drawString(sensor.getSampleString(), 0, 1);
 
             while(direction) {
                 driver.forward();
@@ -27,32 +29,14 @@ public class Main {
                 //switch direction when black is detected
             }
             driver.stop();
-            while(!direction){
-                driver.backwards();
-                Thread.sleep(500);
-                driver.stop();
-                driver.turnLeft();
-            }
+            driver.backwards();
+            Thread.sleep(500);
+            driver.stop();
+            driver.turnLeft();
+            Thread.sleep(500);
+            direction = true;
 
-            if(!direction){
-                driver.stop();
-                run = false;
-            }
 
         }
-
-        while(!run) {
-
-            if(!direction){
-                driver.backwards();
-                run = sensor.blackDetectedBack(); // sensor returns true on black
-            }
-
-            if(direction){
-                driver.stop();
-                direction = true;
-            }
-        }
-
     }
 }
