@@ -17,17 +17,22 @@ public class Main {
         boolean direction = true; // true is forward, false is reverse
 
         while(run) {
+            lcd.drawString(sensor.getSampleString(), 0, 1);
 
             if(direction) {
-                lcd.drawString(sensor.getSampleString(), 0, 1);
                 driver.forward();
                 direction = !sensor.blackDetectedFront(); // sensor returns true on black
-                //switch direction until black is detected
+                //switch direction when black is detected
             }
-            driver.stop();
             if(!direction){
-                driver.backwards();
+                driver.stop();
+                run = false;
             }
+/*            if(!direction){
+                driver.backwards();
+                Thread.sleep(1000);
+                direction = sensor.blackDetectedBack(); // sensor returns true on black
+            }*/
         }
 
 

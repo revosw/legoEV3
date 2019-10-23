@@ -1,15 +1,12 @@
-import com.sun.org.apache.regexp.internal.RE;
-import lejos.hardware.ev3.EV3;
-import lejos.hardware.motor.*;
-import lejos.hardware.port.MotorPort;
-import lejos.hardware.sensor.EV3ColorSensor;
-import lejos.hardware.port.Port;
 import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
-import lejos.robotics.SampleProvider;
 /**
- * Main class of app to make robot drive forward.
+ * Controls robot driving, stopping and turning.
+ * @author Olav Valle
+ * @version 20191023
  */
 
 public class MotorDriver

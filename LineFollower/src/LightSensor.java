@@ -52,10 +52,30 @@ public class LightSensor {
         return blackDetected;
     }
 
+    /**
+     * The rear mounted color sensor.
+     * @return true when black has been detected.
+     */
+    public boolean blackDetectedBack()
+    {
+        double black = 0.1;
+
+        boolean blackDetected = false;
+        frontReader.fetchSample(backSample, 0);
+
+        if(black >= backSample[0]){
+            blackDetected = true;
+        }
+
+        return blackDetected;
+    }
+
     public String getSampleString()
     {
         frontReader.fetchSample(frontSample, 0);
-        return "" + frontSample[0];
+        backReader.fetchSample(backSample, 0);
+        return "Front: " + frontSample[0] + "\n" +
+                "Rear: " + backSample[0];
 
     }
 }
