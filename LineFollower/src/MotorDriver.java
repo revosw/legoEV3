@@ -34,6 +34,10 @@ public class MotorDriver
 
     }
 
+    public void rightMotorSpeed()
+    {
+
+    }
     /**
      * Drives robot forward.
      */

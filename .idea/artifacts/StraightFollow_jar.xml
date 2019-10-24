@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="StraightFollow:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/StraightFollow_jar</output-path>
+    <root id="archive" name="StraightFollow.jar">
+      <element id="module-output" name="StraightFollow" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/dbusjava.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/ev3classes.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
