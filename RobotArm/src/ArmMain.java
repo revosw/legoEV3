@@ -14,7 +14,7 @@ public class ArmMain {
         Behavior back = new MoveBack();
 
         // Behavior array
-        Behavior [] bArray = {sense, white, black, back};
+        Behavior [] bArray = {white, black, back};
 
         // Arbitrator
         Arbitrator arb = new Arbitrator(bArray);
