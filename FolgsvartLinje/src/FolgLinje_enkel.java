@@ -1,9 +1,9 @@
 /* FolgLinje.java  GS - 2012-01-20
 
- * Program som gjør at en enkel robot følger en sort linje
+ * Program som gjï¿½r at en enkel robot fï¿½lger en sort linje
  * Du trenger en enkel robot som kan svinge
  * en lyssensor koblet til sensor 1 - pekende nedover
- * en trykksensor koblet til sensor 2 - pekende rett fram i gå retningen
+ * en trykksensor koblet til sensor 2 - pekende rett fram i gï¿½ retningen
  */
 import lejos.hardware.motor.*;
 import lejos.hardware.sensor.EV3TouchSensor;
@@ -30,7 +30,7 @@ public class FolgLinje_enkel{
 	SampleProvider trykksensor = new EV3TouchSensor(s2);
 	float[] trykkSample = new float[trykksensor.sampleSize()]; // tabell som inneholder avlest verdi
 
-	// Setter hastighet på roboten
+	// Setter hastighet pï¿½ roboten
     Motor.A.setSpeed(400);
     Motor.C.setSpeed(400);
 
@@ -47,7 +47,7 @@ public class FolgLinje_enkel{
 
 	boolean fortsett = true;
 
-	while (fortsett){ 	// Fortsett så lenge roboten ikke treffer noe
+	while (fortsett){ 	// Fortsett sï¿½ lenge roboten ikke treffer noe
 	   fargeLeser.fetchSample(fargeSample, 0);
        if (fargeSample[0]*100 > svart){   // sjekk sort linje
        	  Motor.A.forward();
@@ -56,7 +56,7 @@ public class FolgLinje_enkel{
           Thread.sleep(100);
           System.out.println("hvit");
        } else {
-		   // Kjør framover
+		   // Kjï¿½r framover
 		   Motor.A.forward();
 		   Motor.C.forward();
 		   System.out.println("svart");

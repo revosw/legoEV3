@@ -34,7 +34,7 @@ public class SensorTest{
 			Brick brick = BrickFinder.getDefault();
     		Port s1 = brick.getPort("S1"); // fargesensor
     		Port s2 = brick.getPort("S2"); // trykksensor
-    		Port s3 = brick.getPort("S3"); // ultrasonisksensor
+    		//Port s3 = brick.getPort("S3"); // ultrasonisksensor
 
 			EV3 ev3 = (EV3) BrickFinder.getLocal();
 			TextLCD lcd = ev3.getTextLCD();
@@ -45,7 +45,7 @@ public class SensorTest{
 
 			/* Definerer en fargesensor og fargeAvleser */
     		EV3ColorSensor fargesensor = new EV3ColorSensor(s1); // ev3-fargesensor
-    		SampleProvider fargeLeser = fargesensor.getMode("RGB");  // svart = 0.01..
+    		SampleProvider fargeLeser = fargesensor.getMode("Red");  // svart = 0.01..
     		//SampleProvider fargeLeser = fargesensor.getColorIDMode();  // OBS: Funker ikke - f�r arrayfeil. can identify 8 unique colors (NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN).
 
     		float[] fargeSample = new float[fargeLeser.sampleSize()];  // tabell som innholder avlest verdi
@@ -55,9 +55,9 @@ public class SensorTest{
 			float[] trykkSample = new float[trykksensor.sampleSize()]; // tabell som inneholder avlest verdi
 
 			/* Definerer en ultrasonisksensor */
-			EV3UltrasonicSensor ultraSensor = new EV3UltrasonicSensor(s3);
-			SampleProvider ultraLeser = ultraSensor.getDistanceMode();
-			float[] ultraSample = new float[ultraLeser.sampleSize()]; // tabell som inneholder avlest verdi
+			//EV3UltrasonicSensor ultraSensor = new EV3UltrasonicSensor(s3);
+			//SampleProvider ultraLeser = ultraSensor.getDistanceMode();
+			//float[] ultraSample = new float[ultraLeser.sampleSize()]; // tabell som inneholder avlest verdi
 
 			boolean fortsett  = true;
 
@@ -66,8 +66,8 @@ public class SensorTest{
       			lcd.drawString("Farge: " + fargeSample[0], 0, 3);
 				//System.out.println("Farge: " + fargeSample[0]);
 
-				ultraLeser.fetchSample(ultraSample, 0);
-				lcd.drawString("Avstand: " + ultraSample[0], 0,5);
+				//ultraLeser.fetchSample(ultraSample, 0);
+				//lcd.drawString("Avstand: " + ultraSample[0], 0,5);
 
 	  			if (trykkSample != null && trykkSample.length > 0){
 	  				trykksensor.fetchSample(trykkSample, 0);
