@@ -36,6 +36,7 @@ import lejos.robotics.subsumption.Behavior;
  * @author Olav Valle
  * @version 04/11/19
  */
+
 public class ArmMain {
 
     public static void main(String[] args)
@@ -44,16 +45,14 @@ public class ArmMain {
         Behavior white = new MoveWhite();
         Behavior black = new MoveBlack();
         Behavior home = new MoveHome();
+        Behavior wait = new Wait();
 
         // Behavior array
-        Behavior[] bArray = { home, white, black };
+        Behavior[] bArray = { wait, home, white, black };
 
         // Arbitrator
         Arbitrator arb = new Arbitrator(bArray);
         arb.go();
-
-
-
     }
 
 }
