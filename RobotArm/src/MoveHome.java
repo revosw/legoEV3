@@ -1,6 +1,6 @@
 import lejos.robotics.subsumption.Behavior;
 
-public class MoveBack implements Behavior {
+public class MoveHome implements Behavior {
     @Override
     public boolean takeControl() {
         return false;
