@@ -13,6 +13,11 @@ public class MoveBlack implements Behavior {
     {
 
     }
+
+    /**
+     * Requests control if the ball sensor reports a white ball.
+     * @return true if ball is black.
+     */
     @Override
     public boolean takeControl()
     {
@@ -20,6 +25,10 @@ public class MoveBlack implements Behavior {
         //TODO add method to take control when SenseColor returns a black reading.
     }
 
+    /**
+     * Sets the MoveBlack behavior's suppressed field to true,
+     * which interrupts MoveBlack action.
+     */
     @Override
     public void suppress()
     {

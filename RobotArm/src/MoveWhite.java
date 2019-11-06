@@ -1,5 +1,4 @@
 import lejos.robotics.subsumption.Behavior;
-import org.graalvm.compiler.lir.sparc.SPARCMove;
 
 /**
  * The Behavior that should become active when a white ball is detected.
@@ -17,6 +16,10 @@ public class MoveWhite implements Behavior {
 
     }
 
+    /**
+     * Requests control if the ball sensor reports a white ball.
+     * @return true if ball is white.
+     */
     @Override
     public boolean takeControl()
     {
@@ -25,6 +28,11 @@ public class MoveWhite implements Behavior {
         //TODO and so that button is NOT pushed
     }
 
+
+    /**
+     * Sets the MoveWhite behavior's suppressed field to true,
+     * which interrupts MoveWhite action.
+     */
     @Override
     public void suppress()
     {

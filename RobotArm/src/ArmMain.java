@@ -66,13 +66,14 @@ public class ArmMain {
         s3 = ev3.getPort("S3");
 
         //sensors
-        vertical = new Vertical();
-        horizontal = new Horizontal();
-
-        //motors
-        claw = new Claw();
         colour = new SenseColour();
         pressure = new Pressure(s2);
+
+        //motors
+        vertical = new Vertical();
+        horizontal = new Horizontal();
+        claw = new Claw();
+
 
         // Behaviors
         Behavior white = new MoveWhite();

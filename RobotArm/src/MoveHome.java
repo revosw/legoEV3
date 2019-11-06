@@ -24,9 +24,15 @@ public class MoveHome implements Behavior {
     public boolean takeControl()
     {
         return (touch.getTouch() == 0);
-        //TODO add method so that behavior takes control when pressure sensor is NOT pushed
+        //TODO test if getTouch() actually returns a comparable value. See Pressure class.
+        //behavior requests control when pressure sensor is NOT pushed
     }
 
+
+    /**
+     * Sets the MoveHome behavior's suppressed field to true,
+     * which interrupts MoveHome action.
+     */
     @Override
     public void suppress()
     {
