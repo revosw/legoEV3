@@ -1,6 +1,5 @@
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3TouchSensor;
-import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
 /**

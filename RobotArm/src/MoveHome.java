@@ -15,6 +15,11 @@ public class MoveHome implements Behavior {
         this.touch = touch;
         this.horizontal = horizontal;
     }
+
+    /**
+     * Requests control if touch button is not pressed.
+     * @return true if it requests control, false if not
+     */
     @Override
     public boolean takeControl()
     {
@@ -28,6 +33,11 @@ public class MoveHome implements Behavior {
         supressed = true;
     }
 
+    /**+
+     * Performs the MoveHome action,
+     * which returns the arm to starting position
+     * and resets rotation tachometer to zero.
+     */
     @Override
     public void action()
     {
@@ -36,12 +46,13 @@ public class MoveHome implements Behavior {
         //moves back to known 0 position until supressed
         // or interrupted by touch button
 
+        //while touch is not pressed and supressed = true
         while (!supressed && (touch.getTouch() == 0)) {
              horizontal.rotateHome();
         } //while
 
-
-        if( touch.getTouch() == 1) {
+        // if touch is pressed
+        if( touch.getTouch() == 1 ) {
             //touch button has been pressed.
             //we are home, so we reset tacho to 0.
             horizontal.resetTacho();
