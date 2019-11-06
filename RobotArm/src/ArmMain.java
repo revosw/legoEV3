@@ -1,6 +1,7 @@
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.ev3.EV3;
+import lejos.hardware.port.Port;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 
@@ -48,12 +49,21 @@ public class ArmMain {
     private static SenseColour colour;
     private static Pressure pressure;
     private static EV3 ev3;
+    private static Port s1;
+    private static Port s2;
+    private static Port s3;
+
 
 
     public static void main(String[] args)
     {
         //brick
         ev3 = (EV3) BrickFinder.getDefault();
+
+        //sensor ports
+        s1 = ev3.getPort("S1");
+        s2 = ev3.getPort("S2");
+        s3 = ev3.getPort("S3");
 
         //sensors
         vertical = new Vertical();
@@ -62,12 +72,12 @@ public class ArmMain {
         //motors
         claw = new Claw();
         colour = new SenseColour();
-        pressure = new Pressure();
+        pressure = new Pressure(s2);
 
         // Behaviors
         Behavior white = new MoveWhite();
         Behavior black = new MoveBlack();
-        Behavior home = new MoveHome(colour);
+        Behavior home = new MoveHome(pressure, horizontal);
         Behavior wait = new Wait();
 
 
