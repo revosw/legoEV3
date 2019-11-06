@@ -10,9 +10,16 @@ import lejos.robotics.RegulatedMotor;
  * Class to control horizontal arm movement, i.e. rotation.
  */
 public class Horizontal {
-    private Brick brick = BrickFinder.getDefault();
-    private RegulatedMotor rotation = new EV3LargeRegulatedMotor(MotorPort.A);
-    private Port s1 = brick.getPort("S1");
-    private EV3TouchSensor touch = new EV3TouchSensor(s1);
 
+    private RegulatedMotor horizontal;
+
+    public Horizontal()
+    {
+        horizontal = new EV3LargeRegulatedMotor(MotorPort.C);
+    }
+
+    public void rotate(int limit)
+    {
+        horizontal.rotateTo(limit);
+    }
 }

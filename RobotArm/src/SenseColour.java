@@ -1,3 +1,4 @@
+import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.subsumption.Behavior;
 
 /**
@@ -5,6 +6,8 @@ import lejos.robotics.subsumption.Behavior;
  */
 
 
-public class SenseColour{
+public class SenseColour
+{
+
 
 }

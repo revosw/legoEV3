@@ -14,6 +14,7 @@ public class MoveWhite implements Behavior {
     {
         return false;
         //TODO add method to take control when SenseColor returns a white reading
+        //TODO and so that button is NOT pushed
     }
 
     @Override
@@ -35,6 +36,7 @@ public class MoveWhite implements Behavior {
         5. drop ball
         6. finish
         */
+
 
 
     }

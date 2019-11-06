@@ -7,7 +7,12 @@ import lejos.robotics.subsumption.Behavior;
 public class MoveHome implements Behavior {
 
     private boolean supressed = false;
+    private SenseColour armColor;
 
+    public MoveHome(SenseColour armColor)
+    {
+        this.armColor = armColor;
+    }
     @Override
     public boolean takeControl()
     {

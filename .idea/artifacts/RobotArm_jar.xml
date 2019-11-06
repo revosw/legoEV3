@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RobotArm:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RobotArm_jar</output-path>
+    <root id="archive" name="RobotArm.jar">
+      <element id="module-output" name="RobotArm" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/dbusjava.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/ev3classes.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

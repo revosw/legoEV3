@@ -1,3 +1,6 @@
+import lejos.hardware.BrickFinder;
+import lejos.hardware.Button;
+import lejos.hardware.ev3.EV3;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 
@@ -39,20 +42,67 @@ import lejos.robotics.subsumption.Behavior;
 
 public class ArmMain {
 
+    private static Vertical vertical;
+    private static Horizontal horizontal;
+    private static Claw claw;
+    private static SenseColour colour;
+    private static Pressure pressure;
+    private static EV3 ev3;
+
+
     public static void main(String[] args)
     {
+        //brick
+        ev3 = (EV3) BrickFinder.getDefault();
+
+        //sensors
+        vertical = new Vertical();
+        horizontal = new Horizontal();
+
+        //motors
+        claw = new Claw();
+        colour = new SenseColour();
+        pressure = new Pressure();
+
         // Behaviors
         Behavior white = new MoveWhite();
         Behavior black = new MoveBlack();
-        Behavior home = new MoveHome();
+        Behavior home = new MoveHome(colour);
         Behavior wait = new Wait();
+
 
         // Behavior array
         Behavior[] bArray = { wait, home, white, black };
 
         // Arbitrator
         Arbitrator arb = new Arbitrator(bArray);
-        arb.go();
+
+        boolean cont = true;
+        while(cont) {
+            switch (Button.waitForAnyPress()) {
+                case (Button.ID_ENTER):
+                    arb.go();
+                    break;
+                case (Button.ID_ESCAPE):
+                    cont = false;
+                    //arb.stop();
+                    break;
+                case (Button.ID_LEFT):
+                    horizontal.rotate(-280);
+                    break;
+                case (Button.ID_RIGHT):
+                    horizontal.rotate(0);
+                    break;
+            }
+        }
+        //TODO add app shutdown with ESCAPE button
     }
 
+    //TODO add lejos.hardware.Button functions for testing of behaviors separately
+    // i.e. up for Home, left for 90 deg, down for 180 deg, right for calibrate.
+    // center button to activate/deactivate arbitrator?
+
+    //TODO start with arbitrator off, and activate manually?
+
+    //TODO possible to call a behavior directly with Behavior.action?
 }
