@@ -10,6 +10,7 @@ public class Pressure
     private EV3TouchSensor touch;
     private SampleProvider touchProvider;
     private float[] touchSample;
+
     /**
      * Pressure button class constructor.
      * @param buttonPort the port the home button sensor is connected to

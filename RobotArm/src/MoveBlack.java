@@ -8,6 +8,11 @@ public class MoveBlack implements Behavior {
 
     private boolean supressed = false;
 
+    //TODO add motors and sensors as parameters to constructor
+    public MoveBlack()
+    {
+
+    }
     @Override
     public boolean takeControl()
     {

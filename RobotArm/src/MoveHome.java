@@ -6,9 +6,9 @@ import lejos.robotics.subsumption.Behavior;
 
 public class MoveHome implements Behavior {
 
-    private final Horizontal horizontal;
-    private boolean supressed = false;
-    private Pressure touch;
+    private boolean supressed = false; // supressed acts as off switch for action()
+    private final Horizontal horizontal; //the horizontal motor
+    private Pressure touch; //the touch button
 
     public MoveHome(Pressure touch, Horizontal horizontal)
     {

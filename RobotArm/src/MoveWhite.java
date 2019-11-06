@@ -1,4 +1,5 @@
 import lejos.robotics.subsumption.Behavior;
+import org.graalvm.compiler.lir.sparc.SPARCMove;
 
 /**
  * The Behavior that should become active when a white ball is detected.
@@ -8,6 +9,13 @@ import lejos.robotics.subsumption.Behavior;
 public class MoveWhite implements Behavior {
 
     private boolean supressed = false;
+
+
+    //TODO add constructor with motors and sensors as parameters
+    public MoveWhite()
+    {
+
+    }
 
     @Override
     public boolean takeControl()
@@ -27,6 +35,7 @@ public class MoveWhite implements Behavior {
     public void action()
     {
         supressed = false;
+
         /*TODO:
         1. lower arm
         2. grab ball
@@ -36,8 +45,5 @@ public class MoveWhite implements Behavior {
         5. drop ball
         6. finish
         */
-
-
-
     }
 }
