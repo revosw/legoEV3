@@ -19,7 +19,7 @@ import lejos.robotics.subsumption.Behavior;
  * This executes the behavior's action() method. The action() method details the exact behavior
  * to be taken while it is in control.
  *
- *          * An action() method is kept active by a boolean variable (suppressed = false),
+ * An action() method is kept active by a boolean variable (suppressed = false),
  * and should finish when suppressed = true.
  *
  * When the action() method finishes, it should put the robot in a safe state,
