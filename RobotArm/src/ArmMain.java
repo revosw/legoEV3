@@ -66,7 +66,7 @@ public class ArmMain {
         s3 = ev3.getPort("S3");
 
         //sensors
-        colour = new SenseColour();
+        colour = new SenseColour(s1, s3);
         pressure = new Pressure(s2);
 
         //motors
