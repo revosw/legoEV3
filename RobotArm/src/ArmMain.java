@@ -66,7 +66,7 @@ public class ArmMain {
         s3 = ev3.getPort("S3");
 
         //sensors
-        colour = new SenseColour(s1, s3);
+        colour = new SenseColour(s3, s1);
         pressure = new Pressure(s2);
 
         //motors
@@ -76,8 +76,8 @@ public class ArmMain {
 
 
         // Behaviors
-        Behavior white = new MoveWhite();
-        Behavior black = new MoveBlack();
+        Behavior white = new MoveWhite(horizontal, colour, pressure);
+        Behavior black = new MoveBlack(horizontal, colour, pressure);
         Behavior home = new MoveHome(pressure, horizontal);
         Behavior wait = new Wait();
 
@@ -93,17 +93,20 @@ public class ArmMain {
             switch (Button.waitForAnyPress()) {
                 case (Button.ID_ENTER):
                     arb.go();
+                    cont = false;
                     break;
                 case (Button.ID_ESCAPE):
+                    arb.stop();
                     cont = false;
-                    //arb.stop();
                     break;
                 case (Button.ID_LEFT):
-                    horizontal.rotate(-280);
+                    horizontal.rotateTo(-280);
                     break;
                 case (Button.ID_RIGHT):
-                    horizontal.rotate(0);
+                    horizontal.rotateTo(0);
                     break;
+                case(Button.ID_UP):
+                    home.action();
             }
         }
         //TODO add app shutdown with ESCAPE button

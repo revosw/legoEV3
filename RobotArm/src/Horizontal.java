@@ -9,8 +9,7 @@ public class Horizontal {
 
     private RegulatedMotor horizontal;
 
-    public Horizontal()
-    {
+    public Horizontal() {
         horizontal = new EV3LargeRegulatedMotor(MotorPort.C);
     }
 
@@ -22,13 +21,21 @@ public class Horizontal {
      * For example, a 90 degree turn to the left would be rotate(-280)
      * rotate(0) returns the arm to its initial starting point,
      * unless motor tachometer has been reset
+     *
      * @param limit the angle position to rotate to
      */
-    public void rotate(int limit)
-    {
+    public void rotateTo(int limit) {
         horizontal.rotateTo(limit);
     }
 
+    public void absoluteRotation(int degrees)
+    {
+        horizontal.rotate(degrees, true);
+    }
+    public void haltHorizontal()
+    {
+        horizontal.stop();
+    }
     public void rotateHome()
     {
         horizontal.rotateTo(0, true);

@@ -23,8 +23,7 @@ public class MoveHome implements Behavior {
     @Override
     public boolean takeControl()
     {
-        return (touch.getTouch() == 0);
-        //TODO test if getTouch() actually returns a comparable value. See Pressure class.
+        return !touch.isPressed();
         //behavior requests control when pressure sensor is NOT pushed
     }
 
@@ -49,22 +48,31 @@ public class MoveHome implements Behavior {
     {
         supressed = false;
 
-        //moves back to known 0 position until supressed
-        // or interrupted by touch button
+        boolean startRotation = true;
+        while (!supressed) {
 
-        //while touch is not pressed and supressed = true
-        while (!supressed && (touch.getTouch())) {
-             horizontal.rotateHome();
-        } //while
+            //moves back to known 0 position until supressed
+            // or interrupted by touch button
 
-        // if touch is pressed
-        if( touch.getTouch() ) {
-            //touch button has been pressed.
-            //we are home, so we reset tacho to 0.
-            horizontal.resetTacho();
-            //calling resetTacho stops any motor movement
-        } //if
+            //while touch is not pressed and supressed = true
+            if (startRotation && !touch.isPressed()) {
+                horizontal.absoluteRotation(600);
+                startRotation = false;
+            }
 
+
+
+
+            // if touch is pressed
+            if (touch.isPressed()) {
+                //touch button has been pressed.
+                //halts motor movement
+                horizontal.haltHorizontal();
+                //we are home, so we reset tacho to 0.
+                horizontal.resetTacho();
+                //calling resetTacho stops any motor movement
+            } //if
+        }
         //TODO should this be two whiles, for !suppressed and touch.pressed separately?
 
 

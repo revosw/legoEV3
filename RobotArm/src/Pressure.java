@@ -26,7 +26,7 @@ public class Pressure
      * Returns the current status of the pressure button as an int.
      * @return 1 if button is pressed, 0 if not pressed.
      */
-    public boolean getTouch()
+    public boolean isPressed()
     {
         touchProvider.fetchSample(touchSample, 0);
 

@@ -1,5 +1,6 @@
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
 
@@ -11,20 +12,26 @@ import lejos.robotics.SampleProvider;
 public class SenseColour
 {
     private EV3ColorSensor colorSensor; // sensor for detecting ball color
-    private EV3ColorSensor distanceSensor; // sensor for measuring arm height
+    private SampleProvider colorProvider;
+    private float[] colorSample;
 
+    private EV3ColorSensor distanceSensor; // sensor for measuring arm height
     private SampleProvider distanceProvider;
     private float[] distanceSample;
+
 
     public SenseColour(Port colorPort, Port distancePort)
     {
         // You don't need a sample provider to get a color, you can fetch directly with getColorID()
         this.colorSensor = new EV3ColorSensor(colorPort);
+        this.colorProvider = colorSensor.getColorIDMode();
+        this.colorSample = new float[colorProvider.sampleSize()];
+
         // Need a sample provider and sample container to read from getRedMode()
         this.distanceSensor = new EV3ColorSensor(distancePort);
-
         distanceProvider = distanceSensor.getRedMode();
         distanceSample = new float[distanceProvider.sampleSize()];
+
     }
 
     /**
@@ -44,7 +51,8 @@ public class SenseColour
      */
     public int getColor()
     {
-        return colorSensor.getColorID();
+        colorProvider.fetchSample(colorSample, 0);
+        return Math.round(colorSample[0]);
     }
 
 }
