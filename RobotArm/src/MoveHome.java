@@ -53,12 +53,12 @@ public class MoveHome implements Behavior {
         // or interrupted by touch button
 
         //while touch is not pressed and supressed = true
-        while (!supressed && (touch.getTouch() == 0)) {
+        while (!supressed && (touch.getTouch())) {
              horizontal.rotateHome();
         } //while
 
         // if touch is pressed
-        if( touch.getTouch() == 1 ) {
+        if( touch.getTouch() ) {
             //touch button has been pressed.
             //we are home, so we reset tacho to 0.
             horizontal.resetTacho();
