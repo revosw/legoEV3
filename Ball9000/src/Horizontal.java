@@ -5,10 +5,14 @@ import lejos.robotics.RegulatedMotor;
 /**
  * Class to control horizontal arm movement, i.e. rotation.
  */
+@SuppressWarnings("WeakerAccess")
 public class Horizontal {
 
     private RegulatedMotor horizontal;
 
+    /**
+     * Horizontal class constructor.
+     */
     public Horizontal() {
         horizontal = new EV3LargeRegulatedMotor(MotorPort.C);
     }
@@ -17,7 +21,7 @@ public class Horizontal {
 
     /**
      * Rotates motor to the specified angle value, limit < 0 rotates to left.
-     * Angle limits have a ratio of aprox. 3:1 to actual arm movement.
+     * Angle limits have a ratio of approx. 3:1 to actual arm movement.
      * For example, a 90 degree turn to the left would be rotate(-280)
      * rotate(0) returns the arm to its initial starting point,
      * unless motor tachometer has been reset
@@ -28,18 +32,41 @@ public class Horizontal {
         horizontal.rotateTo(limit);
     }
 
+    /**
+     * Rotates the motor by a number of degrees.
+     * @param degrees the number of degrees to rotate motor.
+     */
+    //TODO implement boolean return if motor stalls during rotation?
+
     public void absoluteRotation(int degrees)
     {
         horizontal.rotate(degrees, true);
     }
+
+    /**
+     * Halts the movement of the horizontal motor.
+     */
     public void haltHorizontal()
     {
         horizontal.stop();
     }
+
+    /**
+     * Rotates motor to the zero position of its tachometer, with immediate return.
+     * The position the motor moves to is the position the motor was in
+     * when the tachometer was last reset, either during calibration or
+     * when the resetTacho method was called.
+     */
+    @SuppressWarnings("unused")
     public void rotateHome()
     {
         horizontal.rotateTo(0, true);
     }
+
+    /**
+     * Sets the tachometer to 0, which immediately stops any motor movement.
+     * Any further calls to absoluteRotation will use this position as 0.
+     */
     public void resetTacho()
     {
         horizontal.resetTachoCount();

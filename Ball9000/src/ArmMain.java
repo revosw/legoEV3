@@ -54,69 +54,85 @@ public class ArmMain {
     private static Port s3;
 
 
+    public static void main(String[] args) {
+        while (Button.ESCAPE.isUp()) { //TODO check that this didn't break anything.
 
-    public static void main(String[] args)
-    {
-        //brick
-        ev3 = (EV3) BrickFinder.getDefault();
+            //brick
+            ev3 = (EV3) BrickFinder.getDefault();
 
-        //sensor ports
-        s1 = ev3.getPort("S1");
-        s2 = ev3.getPort("S2");
-        s3 = ev3.getPort("S3");
+            //sensor ports
+            s1 = ev3.getPort("S1");
+            s2 = ev3.getPort("S2");
+            s3 = ev3.getPort("S3");
 
-        //sensors
-        colour = new SenseColour(s3, s1);
-        pressure = new Pressure(s2);
+            //sensors
+            colour = new SenseColour(s3, s1);
+            pressure = new Pressure(s2);
 
-        //motors
-        vertical = new Vertical();
-        horizontal = new Horizontal();
-        claw = new Claw();
-
-
-        // Behaviors
-        Behavior white = new MoveWhite(horizontal, colour, pressure);
-        Behavior black = new MoveBlack(horizontal, colour, pressure);
-        Behavior home = new MoveHome(pressure, horizontal);
-        Behavior wait = new Wait();
+            //motors
+            vertical = new Vertical();
+            horizontal = new Horizontal();
+            claw = new Claw();
 
 
-        // Behavior array
-        Behavior[] bArray = { wait, home, white, black };
+            // Behaviors
+            Behavior white = new MoveWhite(horizontal, colour, pressure);
+            Behavior black = new MoveBlack(horizontal, colour, pressure);
+            Behavior home = new MoveHome(pressure, horizontal);
+            Behavior wait = new Wait();
 
-        // Arbitrator
-        Arbitrator arb = new Arbitrator(bArray);
 
-        boolean cont = true;
-        while(cont) {
-            switch (Button.waitForAnyPress()) {
-                case (Button.ID_ENTER):
-                    arb.go();
-                    cont = false;
-                    break;
-                case (Button.ID_ESCAPE):
-                    arb.stop();
-                    cont = false;
-                    break;
-                case (Button.ID_LEFT):
-                    horizontal.rotateTo(-280);
-                    break;
-                case (Button.ID_RIGHT):
-                    horizontal.rotateTo(0);
-                    break;
-                case(Button.ID_UP):
-                    home.action();
+            // Behavior array
+            Behavior[] bArray = {wait, home, white, black};
+
+            //TODO should the Arbitrator be in its own class (nested class?),
+            // with sensors and motors (or Behavior[]?) as construction parameters?
+
+            // Arbitrator
+            Arbitrator arb = new Arbitrator(bArray);
+            //TODO should Arbitrator and Calibration be implemented
+            // as static nested classes in ArmMain?
+
+
+            //TODO change this to a lejos.utility.TextMenu
+            // implementing choices "Start Arbitrator", "Calibrate", and "Manual Control"
+            boolean cont = true;
+            while (cont) {
+                switch (Button.waitForAnyPress()) {
+                    case (Button.ID_ENTER):
+                        arb.go();
+                        cont = false;
+                        break;
+                    case (Button.ID_ESCAPE):
+                        arb.stop();
+                        cont = false;
+                        break;
+                    case (Button.ID_LEFT):
+                        horizontal.rotateTo(-280);
+                        break;
+                    case (Button.ID_RIGHT):
+                        horizontal.rotateTo(0);
+                        break;
+                    case (Button.ID_UP):
+                        home.action();
+                }
             }
-        }
-        //TODO add app shutdown with ESCAPE button
+            //TODO add app shutdown with ESCAPE button
+        }// while(Button.ESCAPE.isUp())
+        // Exits program when ESCAPE is pressed
+        System.exit(0);
+
+        //TODO add lejos.hardware.Button functions for testing of behaviors separately
+        // i.e. up for Home, left for 90 deg, down for 180 deg, right for calibrate.
+        // center button to activate/deactivate arbitrator?
+
+        //TODO start with arbitrator off, and activate manually?
+
+        //TODO possible to call a behavior directly with Behavior.action?
+
     }
 
-    //TODO add lejos.hardware.Button functions for testing of behaviors separately
-    // i.e. up for Home, left for 90 deg, down for 180 deg, right for calibrate.
-    // center button to activate/deactivate arbitrator?
+    public class Caibrate { } //TODO figure this out
 
-    //TODO start with arbitrator off, and activate manually?
-
-    //TODO possible to call a behavior directly with Behavior.action?
+    public class Arbitrate {} //TODO should arbitrator be own class, or nested class?
 }

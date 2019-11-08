@@ -1,20 +1,22 @@
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
-import lejos.hardware.sensor.SensorMode;
-import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
 
 /**
  * Class to implement color/light sensors.
+ * @author Simen
+ * @version 20191107
  */
 
 
 public class SenseColour
 {
+    @SuppressWarnings("FieldCanBeLocal")
     private EV3ColorSensor colorSensor; // sensor for detecting ball color
     private SampleProvider colorProvider;
     private float[] colorSample;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private EV3ColorSensor distanceSensor; // sensor for measuring arm height
     private SampleProvider distanceProvider;
     private float[] distanceSample;
