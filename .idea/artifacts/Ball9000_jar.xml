@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="RobotArm:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/RobotArm_jar</output-path>
-    <root id="archive" name="RobotArm.jar">
-      <element id="module-output" name="RobotArm" />
+  <artifact type="jar" name="Ball9000:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Ball9000_jar</output-path>
+    <root id="archive" name="Ball9000.jar">
+      <element id="module-output" name="Ball9000" />
       <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/dbusjava.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/EV3lib/ev3classes.jar" path-in-jar="/" />
     </root>
