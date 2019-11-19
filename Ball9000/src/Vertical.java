@@ -1,4 +1,3 @@
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
@@ -7,7 +6,7 @@ import lejos.robotics.RegulatedMotor;
  * Class to control vertical movement of arm.
  */
 public class Vertical {
-    //TODO add constructor with motors as parameters
+
 
     private RegulatedMotor vertical;
 
