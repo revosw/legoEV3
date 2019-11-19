@@ -43,7 +43,8 @@ import lejos.robotics.subsumption.Behavior;
 
 public class ArmMain {
 
-    private static Vertical vertical;
+    private static Ball ball;
+/*    private static Vertical vertical;
     private static Horizontal horizontal;
     private static Claw claw;
     private static SenseColour colour;
@@ -51,11 +52,14 @@ public class ArmMain {
     private static EV3 ev3;
     private static Port s1;
     private static Port s2;
-    private static Port s3;
+    private static Port s3;*/
 
 
     public static void main(String[] args) {
         while (Button.ESCAPE.isUp()) { //TODO check that this didn't break anything.
+            ball = new Ball();
+            ball.start();
+/*
 
             //brick
             ev3 = (EV3) BrickFinder.getDefault();
@@ -76,9 +80,9 @@ public class ArmMain {
 
 
             // Behaviors
-            Behavior white = new MoveWhite(horizontal, colour, pressure);
-            Behavior black = new MoveBlack(horizontal, colour, pressure);
-            Behavior home = new MoveHome(pressure, horizontal);
+            Behavior white = new MoveWhite(horizontal, vertical, claw, colour, pressure);
+            Behavior black = new MoveBlack(horizontal, vertical, claw, colour, pressure);
+            Behavior home = new MoveHome(pressure, horizontal, claw, vertical);
             Behavior wait = new Wait();
 
 
@@ -100,21 +104,31 @@ public class ArmMain {
             while (cont) {
                 switch (Button.waitForAnyPress()) {
                     case (Button.ID_ENTER):
-                        arb.go();
-                        cont = false;
+                        //arb.go();
+                        claw.findZero();
+                        while(colour.getDistance() < 0.7){
+                            vertical.moveArm(-300);
+                        }
+                        vertical.stop();
+                        vertical.resetTacho();
+                        home.action();
                         break;
                     case (Button.ID_ESCAPE):
                         arb.stop();
                         cont = false;
                         break;
                     case (Button.ID_LEFT):
-                        horizontal.rotateTo(-280);
+                        white.action();
                         break;
-                    case (Button.ID_RIGHT):
-                        horizontal.rotateTo(0);
+                    case (Button.ID_DOWN):
+                        armTest();
                         break;
                     case (Button.ID_UP):
                         home.action();
+                        break;
+                    case (Button.ID_RIGHT):
+                        clawTest();
+                        break;
                 }
             }
             //TODO add app shutdown with ESCAPE button
@@ -130,9 +144,61 @@ public class ArmMain {
 
         //TODO possible to call a behavior directly with Behavior.action?
 
+*/
+        }
+/*
+    private static void armTest() {
+        boolean armTest = true;
+        while (armTest) {
+            switch(Button.waitForAnyPress()) {
+                case (Button.ID_DOWN):
+                    vertical.changeElevation(0);
+                    break;
+                case (Button.ID_UP):
+                    vertical.changeElevation(220);
+                    break;
+                case (Button.ID_ENTER):
+                    while(colour.getDistance() < 0.7){
+                        vertical.moveArm(-300);
+                    }
+                    vertical.stop();
+                    vertical.resetTacho();
+                    break;
+                case (Button.ID_RIGHT):
+                    vertical.changeElevation(110);
+                    break;
+                case (Button.ID_ESCAPE):
+                    armTest = false;
+                    break;
+            }
+        }
     }
 
-    public class Caibrate { } //TODO figure this out
+    private static void clawTest() {
+        boolean clawTest = true;
+        while(clawTest) {
+            switch (Button.waitForAnyPress()) {
+                case (Button.ID_UP):
+                    claw.closeClaw();
+                    break;
+                case (Button.ID_DOWN):
+                    claw.openClaw();
+                    break;
+                case (Button.ID_ESCAPE):
+                    clawTest = false;
+                    break;
+                case (Button.ID_ENTER):
+                    claw.findZero();
+                    break;
+            }
+        }
+    }
+    */
+
+    }//main
+    /*
+    public class Caibrate {} //TODO figure this out
 
     public class Arbitrate {} //TODO should arbitrator be own class, or nested class?
-}
+    */
+}//class

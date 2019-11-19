@@ -6,14 +6,16 @@ import lejos.robotics.subsumption.Behavior;
 
 public class MoveHome implements Behavior {
 
-    private boolean supressed = false; // supressed acts as off switch for action()
+    private final Vertical vertical;
+    private boolean suppressed = false; // supressed acts as off switch for action()
     private final Horizontal horizontal; //the horizontal motor
     private Pressure touch; //the touch button
 
-    public MoveHome(Pressure touch, Horizontal horizontal)
+    public MoveHome(Pressure touch, Horizontal horizontal, Claw claw, Vertical vertical)
     {
         this.touch = touch;
         this.horizontal = horizontal;
+        this.vertical = vertical;
     }
 
     /**
@@ -35,7 +37,7 @@ public class MoveHome implements Behavior {
     @Override
     public void suppress()
     {
-        supressed = true;
+        suppressed = true;
     }
 
     /**+
@@ -46,10 +48,10 @@ public class MoveHome implements Behavior {
     @Override
     public void action()
     {
-        supressed = false;
+        this.suppressed = false;
 
         boolean startRotation = true;
-        while (!supressed) {
+        while (!this.suppressed) {
 
             //moves back to known 0 position until supressed
             // or interrupted by touch button
@@ -71,6 +73,7 @@ public class MoveHome implements Behavior {
                 //we are home, so we reset tacho to 0.
                 horizontal.resetTacho();
                 //calling resetTacho stops any motor movement
+                this.suppress();
             } //if
         }
         //TODO should this be two whiles, for !suppressed and touch.pressed separately?

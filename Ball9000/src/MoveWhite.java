@@ -1,4 +1,3 @@
-import lejos.robotics.Color;
 import lejos.robotics.subsumption.Behavior;
 
 /**
@@ -8,21 +7,27 @@ import lejos.robotics.subsumption.Behavior;
 
 public class MoveWhite implements Behavior {
 
-    private boolean supressed = false;
+    private boolean suppressed = false;
     private Horizontal horizontal;
+    private Claw claw;
     private SenseColour colour;
     private Pressure pressure;
+    private Vertical vertical;
 
     //TODO add constructor with motors and sensors as parameters
     /**
      * Constructor for the MoveWhite behavior, which should request control when a white ball is present.
      * @param hori the horizontal motor
+     * @param claw
      * @param col the color sensors
      * @param pres the pressure sensor
      */
-    public MoveWhite(Horizontal hori, SenseColour col, Pressure pres)
+    public MoveWhite(Horizontal hori, Vertical vert, Claw claw, SenseColour col, Pressure pres)
     {
+
         this.horizontal = hori;
+        this.vertical = vert;
+        this.claw = claw;
         this.colour = col;
         this.pressure = pres;
     }
@@ -47,15 +52,22 @@ public class MoveWhite implements Behavior {
     @Override
     public void suppress()
     {
-        supressed = true;
+        suppressed = true;
     }
 
     @Override
     public void action()
     {
-        supressed = false;
+        suppressed = false;
 
+        horizontal.rotateTo(-20);
+        claw.openClaw();
+        vertical.changeElevation(220);
+        claw.closeClaw();
+        vertical.changeElevation(110);
         horizontal.rotateTo(-280);
+        claw.openClaw();
+
         /*TODO:
         1. lower arm
         2. grab ball

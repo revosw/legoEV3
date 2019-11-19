@@ -1,4 +1,3 @@
-import lejos.robotics.Color;
 import lejos.robotics.subsumption.Behavior;
 /**
  * The Behavior that should become active when a black ball is detected.
@@ -7,7 +6,7 @@ import lejos.robotics.subsumption.Behavior;
 
 public class MoveBlack implements Behavior {
 
-    private boolean supressed = false;
+    private boolean suppressed = false;
     private Horizontal horizontal;
     private SenseColour colour;
     private Pressure pressure;
@@ -15,11 +14,13 @@ public class MoveBlack implements Behavior {
     /**
      * Constructor for the MoveBlack behavior, which should request control when a black ball is present.
      * @param hori the horizontal motor
+     * @param vertical
+     * @param claw
      * @param col the color sensors
      * @param pres the pressure sensor
      */
     //TODO add constructor with motors and sensors as parameters
-    public MoveBlack(Horizontal hori, SenseColour col, Pressure pres)
+    public MoveBlack(Horizontal hori, Vertical vertical, Claw claw, SenseColour col, Pressure pres)
     {
         this.horizontal = hori;
         this.colour = col;
@@ -45,13 +46,13 @@ public class MoveBlack implements Behavior {
     @Override
     public void suppress()
     {
-        supressed = true;
+        suppressed = true;
     }
 
     @Override
     public void action()
     {
-        supressed = false;
+        suppressed = false;
         horizontal.rotateTo(-560);
         /*TODO:
         1. lower arm
