@@ -74,9 +74,11 @@ public class Ball {
 
     public void start() {
 
-        menu(); //starts a menu only used for debugging.
-
+        //menu(); //starts a menu only used for debugging.
+        calibrate(); // uncomment to run calibration at start
+        arb.go(); //uncomment to start arbitrator
         System.exit(0);
+        //TODO fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuck
     }//start
 
     private void menu()
