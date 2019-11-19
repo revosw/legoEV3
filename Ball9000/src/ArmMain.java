@@ -53,7 +53,7 @@ public class ArmMain {
     private static Port s1;
     private static Port s2;
     private static Port s3;*/
-
+    //todo remove all comments here
 
     public static void main(String[] args) {
         while (Button.ESCAPE.isUp()) { //TODO check that this didn't break anything.
