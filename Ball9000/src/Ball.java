@@ -26,6 +26,13 @@ public class Ball {
     private Arbitrator arb;
     private Behavior[] bArray;
 
+    //fields detailing the degree limits of various positions
+    public final int platformHori = -20; //horizontal position of platform
+    public final int whiteCupHhori = -330; //horizontal position of white cup
+    public final int blackCupHori = -600; //horizontal position of black cup
+    public final int platformVert = 200; //height of ball platform
+    public final int moveHeightVert = 110; //height of arm needed to clear the platform and rotate freely
+
     /**
      * Constructs ports, Arbitrator, behaviors, sensors and movement classes.
      */
@@ -67,20 +74,42 @@ public class Ball {
 
     public void start() {
 
+        menu(); //starts a menu only used for debugging.
+
+        System.exit(0);
+    }//start
+
+    private void menu()
+    {
         //TODO change this to a lejos.utility.TextMenu
         // implementing choices "Start Arbitrator", "Calibrate", and "Manual Control"
+
+        //TODO add app shutdown with ESCAPE button
+        // while(Button.ESCAPE.isUp())
+        // Exits program when ESCAPE is pressed
+
+
+        //TODO add lejos.hardware.Button functions for testing of behaviors separately
+        // i.e. up for Home, left for 90 deg, down for 180 deg, right for calibrate.
+        // center button to activate/deactivate arbitrator?
+
+        //TODO start with arbitrator off, and activate manually?
+
+        //TODO possible to call a behavior directly with Behavior.action?
+
         boolean cont = true;
         while (cont) {
             switch (Button.waitForAnyPress()) {
                 case (Button.ID_ENTER):
                     //arb.go();
-                    claw.findZero();
+/*                    claw.findZero();
                     while(colour.getDistance() < 0.7){
                         vertical.moveArm(-300);
                     }
                     vertical.stop();
                     vertical.resetTacho();
-                    home.action();
+                    home.action();*/
+                    calibrate();
                     break;
                 case (Button.ID_ESCAPE):
                     arb.stop();
@@ -100,22 +129,21 @@ public class Ball {
                     break;
             }//switch
         }//while
-        //TODO add app shutdown with ESCAPE button
-        // while(Button.ESCAPE.isUp())
-        // Exits program when ESCAPE is pressed
-        System.exit(0);
+    }
 
-        //TODO add lejos.hardware.Button functions for testing of behaviors separately
-        // i.e. up for Home, left for 90 deg, down for 180 deg, right for calibrate.
-        // center button to activate/deactivate arbitrator?
-
-        //TODO start with arbitrator off, and activate manually?
-
-        //TODO possible to call a behavior directly with Behavior.action?
-
-
-    }//start
-
+    /**
+     * moves all motors to their intended zeroing position
+     */
+    private void calibrate()
+    {
+        claw.findZero();
+        while(colour.getDistance() < 0.7){
+            vertical.moveArm(-300);
+        }
+        vertical.stop();
+        vertical.resetTacho();
+        home.action();
+    }
 
 
     private void armTest() {

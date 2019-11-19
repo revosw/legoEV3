@@ -16,6 +16,7 @@ public class Vertical {
      */
     public Vertical() {
         vertical = new EV3MediumRegulatedMotor(MotorPort.A);
+        vertical.setSpeed(300);
     }
 
     //TODO find acceleration values?

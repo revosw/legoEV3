@@ -18,7 +18,8 @@ public class MoveWhite implements Behavior {
     /**
      * Constructor for the MoveWhite behavior, which should request control when a white ball is present.
      * @param hori the horizontal motor
-     * @param claw
+     * @param claw the claw motor
+     * @param vert the vertical motor
      * @param col the color sensors
      * @param pres the pressure sensor
      */
@@ -62,11 +63,11 @@ public class MoveWhite implements Behavior {
 
         horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
         claw.openClaw();
-        vertical.changeElevation(220); //moves arm down to ball height
+        vertical.changeElevation(200); //moves arm down to ball height
         claw.closeClaw();
         vertical.changeElevation(110); //moves arm and ball up to cup height
         horizontal.rotateTo(-330); //moves arm to white cup
-        vertical.changeElevation(180); //lowers arm into cup
+        vertical.changeElevation(200); //lowers arm into cup
         claw.openClaw(); //drops ball
         //MoveWhite is finished, MoveHome should take over
 

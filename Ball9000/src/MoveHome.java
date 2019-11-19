@@ -6,15 +6,17 @@ import lejos.robotics.subsumption.Behavior;
 
 public class MoveHome implements Behavior {
 
-    private final Vertical vertical;
     private boolean suppressed = false; // supressed acts as off switch for action()
-    private final Horizontal horizontal; //the horizontal motor
+    private Claw claw;
+    private Vertical vertical;
+    private Horizontal horizontal; //the horizontal motor
     private Pressure touch; //the touch button
 
     public MoveHome(Pressure touch, Horizontal horizontal, Claw claw, Vertical vertical)
     {
         this.touch = touch;
         this.horizontal = horizontal;
+        this.claw = claw;
         this.vertical = vertical;
     }
 
@@ -48,6 +50,7 @@ public class MoveHome implements Behavior {
     @Override
     public void action()
     {
+        vertical.changeElevation(0);
         this.suppressed = false;
 
         boolean startRotation = true;

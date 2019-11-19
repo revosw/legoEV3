@@ -18,8 +18,8 @@ public class Claw {
     }
 
     public boolean findZero() {
-        claw.rotate(180); //
-        claw.resetTachoCount();
+        claw.rotate(180); // closes claw completely
+        claw.resetTachoCount(); //resets tacho counter to 0 while claw is closed
         return (claw.getTachoCount() == 0);
     }
 

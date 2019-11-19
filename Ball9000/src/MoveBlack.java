@@ -59,7 +59,7 @@ public class MoveBlack implements Behavior {
         suppressed = false;
         horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
         claw.openClaw();
-        vertical.changeElevation(220); //moves arm down to ball height
+        vertical.changeElevation(200); //moves arm down to ball height
         claw.closeClaw();
         vertical.changeElevation(110);
         horizontal.rotateTo(-600);
