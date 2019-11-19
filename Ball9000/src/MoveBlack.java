@@ -8,6 +8,8 @@ public class MoveBlack implements Behavior {
 
     private boolean suppressed = false;
     private Horizontal horizontal;
+    private Vertical vertical;
+    private Claw claw;
     private SenseColour colour;
     private Pressure pressure;
 
@@ -23,6 +25,8 @@ public class MoveBlack implements Behavior {
     public MoveBlack(Horizontal hori, Vertical vertical, Claw claw, SenseColour col, Pressure pres)
     {
         this.horizontal = hori;
+        this.vertical = vertical;
+        this.claw = claw;
         this.colour = col;
         this.pressure = pres;
     }
@@ -53,7 +57,15 @@ public class MoveBlack implements Behavior {
     public void action()
     {
         suppressed = false;
-        horizontal.rotateTo(-560);
+        horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
+        claw.openClaw();
+        vertical.changeElevation(220); //moves arm down to ball height
+        claw.closeClaw();
+        vertical.changeElevation(110);
+        horizontal.rotateTo(-600);
+        vertical.changeElevation(180); //lowers arm into cup
+        claw.openClaw(); //drops ball
+
         /*TODO:
         1. lower arm
         2. grab ball

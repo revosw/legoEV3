@@ -60,13 +60,15 @@ public class MoveWhite implements Behavior {
     {
         suppressed = false;
 
-        horizontal.rotateTo(-20);
+        horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
         claw.openClaw();
-        vertical.changeElevation(220);
+        vertical.changeElevation(220); //moves arm down to ball height
         claw.closeClaw();
-        vertical.changeElevation(110);
-        horizontal.rotateTo(-280);
-        claw.openClaw();
+        vertical.changeElevation(110); //moves arm and ball up to cup height
+        horizontal.rotateTo(-330); //moves arm to white cup
+        vertical.changeElevation(180); //lowers arm into cup
+        claw.openClaw(); //drops ball
+        //MoveWhite is finished, MoveHome should take over
 
         /*TODO:
         1. lower arm
