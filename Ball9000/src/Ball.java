@@ -101,14 +101,6 @@ public class Ball {
         while (cont) {
             switch (Button.waitForAnyPress()) {
                 case (Button.ID_ENTER):
-                    //arb.go();
-/*                    claw.findZero();
-                    while(colour.getDistance() < 0.7){
-                        vertical.moveArm(-300);
-                    }
-                    vertical.stop();
-                    vertical.resetTacho();
-                    home.action();*/
                     calibrate();
                     break;
                 case (Button.ID_ESCAPE):
