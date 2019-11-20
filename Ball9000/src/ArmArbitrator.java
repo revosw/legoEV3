@@ -138,7 +138,7 @@ public class ArmArbitrator {
                 }
                 vertical.stop();
                 vertical.resetTacho();
-                colour.calibrateAmbient();
+                //TODO add ball color calibration for startup
                 home.action();
                 suppress();
             }

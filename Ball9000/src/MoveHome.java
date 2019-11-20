@@ -79,6 +79,8 @@ public class MoveHome implements Behavior {
                 //calling resetTacho stops any motor movement
                 this.suppress();
             } //if
+            horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
+
         }
         //TODO should this be two whiles, for !suppressed and touch.pressed separately?
 

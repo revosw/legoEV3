@@ -39,7 +39,7 @@ public class MoveBall implements Behavior {
     @Override
     public boolean takeControl()
     {
-        return (colour.getBallDetected() && pressure.isPressed());
+        return ((colour.getColor() == 6 || colour.getColor() == 7) && pressure.isPressed());
         /*colour.getColor() == 6 || colour.getColor() == 7*/
         //TODO add method to take control when SenseColor returns a black reading.
     }
@@ -59,9 +59,7 @@ public class MoveBall implements Behavior {
     {
 
         suppressed = false;
-        horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
 
-        vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
         try {
             Thread.sleep(20);
         } catch (InterruptedException e) {
@@ -70,6 +68,7 @@ public class MoveBall implements Behavior {
         int ballColour = colour.getColor();
         if(ballColour != 7 && ballColour != 6) { return;
         }
+        vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
         claw.closeClaw(); //claw starts open, this closes it to grab ball
         vertical.changeElevation(CalibrationValues.MOVE_HEIGHT_VERT.getValue());
         //TODO see if refactoring white and black behavior to single class breaks anything.

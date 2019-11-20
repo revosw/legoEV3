@@ -53,8 +53,10 @@ public class SenseColour
      */
     public int getColor()
     {
-        colorProvider.fetchSample(colorSample, 0);
-        return Math.round(colorSample[0]);
+        //colorProvider.fetchSample(colorSample, 0);
+        return colorSensor.getColorID();
+        //return Math.round(colorSample[0]);
     }
+
 
 }
