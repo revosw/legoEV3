@@ -36,7 +36,6 @@ public class ArmArbitrator {
     private RegulatedMotor[] syncedMotors;
 
     //behaviors
-
     private Wait wait;
     private ArmCalibrate cali;
     private MoveHome home;
@@ -83,7 +82,7 @@ public class ArmArbitrator {
         wait = new Wait();
         cali = new ArmCalibrate();
         moveBall = new MoveBall(horizontal, vertical, claw, colour, pressure);
-        home = new MoveHome(pressure, horizontal, claw, vertical);
+        home = new MoveHome(pressure, horizontal, claw, vertical, colour);
         stop = new Stop();
 
         // Behavior array
@@ -152,10 +151,18 @@ public class ArmArbitrator {
                 while (colour.getDistance() < 0.7) {
                     vertical.moveArm(-300);
                 }
-                vertical.stop();
                 vertical.resetTacho();
+                vertical.stop();
                 //TODO add ball color calibration for startup
-                home.action();
+                while(!pressure.isPressed()){
+                    horizontal.absoluteRotation(600); // rotate arm until button is pressed
+                    if(pressure.isPressed()){ //if button is pressed while moving..
+                        horizontal.haltHorizontal(); //.. then we stop arm rotation..
+                        horizontal.resetTacho(); //.. and reset arm tacho to 0
+                    }
+                }
+
+                //home.action();
                 suppress();
             }
         }

@@ -9,15 +9,17 @@ public class MoveHome implements Behavior {
     private boolean suppressed = false; // supressed acts as off switch for action()
     private Claw claw;
     private Vertical vertical;
+    private SenseColour colour;
     private Horizontal horizontal; //the horizontal motor
     private Pressure touch; //the touch button
 
-    public MoveHome(Pressure touch, Horizontal horizontal, Claw claw, Vertical vertical)
+    public MoveHome(Pressure touch, Horizontal horizontal, Claw claw, Vertical vertical, SenseColour colour)
     {
         this.touch = touch;
         this.horizontal = horizontal;
         this.claw = claw;
         this.vertical = vertical;
+        this.colour = colour;
     }
 
     /**
@@ -27,7 +29,7 @@ public class MoveHome implements Behavior {
     @Override
     public boolean takeControl()
     {
-        return !touch.isPressed();
+        return !touch.isPressed() || (colour.getColor() > 0.7);
         //behavior requests control when pressure sensor is NOT pushed
     }
 
@@ -79,7 +81,6 @@ public class MoveHome implements Behavior {
                 //calling resetTacho stops any motor movement
                 this.suppress();
             } //if
-            horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
 
         }
         //TODO should this be two whiles, for !suppressed and touch.pressed separately?
