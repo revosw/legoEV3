@@ -29,7 +29,7 @@ public class MoveHome implements Behavior {
     @Override
     public boolean takeControl()
     {
-        return !touch.isPressed() || (colour.getColor() > 0.7);
+        return !touch.isPressed() || (colour.getDistance() < 0.7);
         //behavior requests control when pressure sensor is NOT pushed
     }
 

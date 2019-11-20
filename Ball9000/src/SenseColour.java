@@ -26,8 +26,8 @@ public class SenseColour
     {
         // You don't need a sample provider to get a color, you can fetch directly with getColorID()
         this.colorSensor = new EV3ColorSensor(colorPort);
-        this.colorProvider = colorSensor.getColorIDMode();
-        this.colorSample = new float[colorProvider.sampleSize()];
+        //this.colorProvider = colorSensor.getColorIDMode();
+        //this.colorSample = new float[colorProvider.sampleSize()];
 
         // Need a sample provider and sample container to read from getRedMode()
         this.distanceSensor = new EV3ColorSensor(distancePort);
