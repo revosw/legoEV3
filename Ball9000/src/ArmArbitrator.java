@@ -58,10 +58,14 @@ public class ArmArbitrator {
         colour = new SenseColour(s3, s1);
         pressure = new Pressure(s2);
 
-        //motors
+        //motor objects
+        //TODO init motors here, and pass as param to motor class constructors
+
+        //motors classes
         vertical = new Vertical();
         horizontal = new Horizontal();
         claw = new Claw();
+
 
         // Behaviors
         wait = new Wait();
