@@ -66,21 +66,15 @@ public class ArmArbitrator {
         // Behaviors
         wait = new Wait();
         cali = new ArmCalibrate();
-        /*white = new MoveWhite(horizontal, vertical, claw, colour, pressure);*/
         moveBall = new MoveBall(horizontal, vertical, claw, colour, pressure);
         home = new MoveHome(pressure, horizontal, claw, vertical);
         stop = new Stop();
 
         // Behavior array
         bArray = new Behavior[]{wait, home, moveBall, cali, stop};
-        /*white, UNCOMMENT TO END BLACK & WHITE REFACTOR TEST */
-        //TODO should the Arbitrator be in its own class (nested class?),
-        // with sensors and motors (or Behavior[]?) as construction parameters?
 
         // Arbitrator
         arb = new Arbitrator(bArray);
-        //TODO should Arbitrator and Calibration be implemented
-        // as static nested classes in ArmMain?
 
     }
 
@@ -104,6 +98,7 @@ public class ArmArbitrator {
         @Override
         public void action() {
             System.exit(0);
+            //TODO change to arb.stop, to see if that works?
         }
 
         @Override
@@ -134,6 +129,7 @@ public class ArmArbitrator {
         public void action() {
             suppressed = false;
             if(!suppressed) {
+
                 claw.stallAndReset();
                 claw.openClaw();
                 while (colour.getDistance() < 0.7) {
@@ -141,6 +137,7 @@ public class ArmArbitrator {
                 }
                 vertical.stop();
                 vertical.resetTacho();
+                colour.calibrateAmbient();
                 home.action();
                 suppress();
             }

@@ -39,7 +39,8 @@ public class MoveBall implements Behavior {
     @Override
     public boolean takeControl()
     {
-        return ( colour.getColor() == 6 || colour.getColor() == 7 ) && (pressure.isPressed());
+        return (colour.getBallDetected() && pressure.isPressed());
+        /*colour.getColor() == 6 || colour.getColor() == 7*/
         //TODO add method to take control when SenseColor returns a black reading.
     }
 
