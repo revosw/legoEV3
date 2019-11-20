@@ -136,6 +136,7 @@ public class ArmArbitrator {
             suppressed = false;
             if(!suppressed) {
                 claw.stallAndReset();
+                claw.openClaw();
                 while (colour.getDistance() < 0.7) {
                     vertical.moveArm(-300);
                 }

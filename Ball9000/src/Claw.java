@@ -28,7 +28,7 @@ public class Claw {
 
     public void stallAndReset()
     {
-        claw.setStallThreshold(3, 1);
+        claw.setStallThreshold(3, 10); //sets low stall tolerance, to prevent overtightening of claw.
         while (!claw.isStalled()) {
             claw.rotate(180, true);
             System.out.println("claw is not stalled, rotating");
@@ -38,7 +38,7 @@ public class Claw {
             System.out.println("claw is stalled, resetting tacho");
             System.out.println("Claw tacho is: " + claw.getTachoCount());
         }
-        claw.setStallThreshold(50, 1000);
+        claw.setStallThreshold(50, 1000);//sets stall tolerance back to default
     }
 
 
@@ -52,10 +52,13 @@ public class Claw {
         // Cannot use isStalled, because motor does not actually stall when claw is
         // closed, the motor just keeps spinning and grinding gears
 
-        claw.rotateTo(0);
+        claw.setStallThreshold(3, 10); //sets low stall tolerance, to prevent overtightening of claw.
+        while(!claw.isStalled() && claw.getTachoCount() < 0){
+            claw.rotateTo(0);
+        }
+        claw.setStallThreshold(50, 1000); //sets stall tolerance back to default
         System.out.println("Claw closed.  Thacho is: " + claw.getTachoCount());
-        //TODO find tacho count when stalled because of ball?
-
+        //TODO find tacho count when stalled because of ball? THIS!!
     }
 
 }

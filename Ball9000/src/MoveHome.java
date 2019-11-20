@@ -52,7 +52,7 @@ public class MoveHome implements Behavior {
     {
         this.suppressed = false;
         vertical.changeElevation(0); //raises arm to highest position
-        claw.closeClaw(); //closes claw
+
 
         boolean startRotation = true;
         while (!this.suppressed) {
