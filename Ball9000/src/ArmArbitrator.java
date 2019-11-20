@@ -79,6 +79,7 @@ public class ArmArbitrator {
     }
 
     public void start() {
+
         cali.action(); // uncomment to run calibration at start
         arb.go(); //uncomment to start arbitrator
         System.exit(0);

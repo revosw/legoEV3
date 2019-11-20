@@ -59,35 +59,34 @@ public class MoveBall implements Behavior {
     {
 
         suppressed = false;
+        horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
 
-        while(!suppressed) {
-            horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
-
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            int ballColour = colour.getColor();
-            if (ballColour != 7 && ballColour != 6) {
-                suppressed = true;
-                continue;
-            }
-
-            vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
-            claw.closeClaw(); //claw starts open, this closes it to grab ball
-            vertical.changeElevation(CalibrationValues.MOVE_HEIGHT_VERT.getValue());
-
-            if (ballColour == 7) {
-                horizontal.rotateTo(CalibrationValues.BLACK_CUP_HORIZONTAL.getValue());
-            } else if (ballColour == 6) {
-                horizontal.rotateTo(CalibrationValues.WHITE_CUP_HORIZONTAL.getValue());
-            }
-
-            vertical.changeElevation(CalibrationValues.CUP_VERT.getValue()); //lowers arm into cup
-            claw.openClaw(); //drops ball
-            suppressed = true;
+        vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
+        try {
+            Thread.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        int ballColour = colour.getColor();
+        if(ballColour != 7 && ballColour != 6) { return;
+        }
+        claw.closeClaw(); //claw starts open, this closes it to grab ball
+        vertical.changeElevation(CalibrationValues.MOVE_HEIGHT_VERT.getValue());
+        //TODO see if refactoring white and black behavior to single class breaks anything.
+        // Thought is that they're basically the exact same, but with different values for where the cup is.
+        // by refactoring, and using a second color check in the action to determine what color the ball is
+        // we might be able to eliminate the misreading of white balls as black when they're placed on the
+        // platform while the robot is in Wait behavior.
+        if(ballColour == 7) {
+            horizontal.rotateTo(CalibrationValues.BLACK_CUP_HORIZONTAL.getValue());
+        }
+        else if(ballColour == 6){
+            horizontal.rotateTo(CalibrationValues.WHITE_CUP_HORIZONTAL.getValue());
+        }
+
+        vertical.changeElevation(CalibrationValues.CUP_VERT.getValue()); //lowers arm into cup
+        claw.openClaw(); //drops ball
+        suppressed = true;
         /*TODO:
         1. lower arm
         2. grab ball

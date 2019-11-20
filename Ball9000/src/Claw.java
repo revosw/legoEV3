@@ -41,12 +41,12 @@ public class Claw {
         claw.setStallThreshold(50, 1000);//sets stall tolerance back to default
     }
 
+
     public void openClaw() {
         claw.rotateTo(-75);
         System.out.println("Claw open. Thacho is: " + claw.getTachoCount());
         // -75 degrees is approx. to open from completely closed
     }
-
     public void closeClaw()
     {
         // Cannot use isStalled, because motor does not actually stall when claw is
