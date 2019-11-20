@@ -4,7 +4,7 @@ import lejos.robotics.subsumption.Behavior;
  */
 
 
-public class MoveBlack implements Behavior {
+public class MoveBall implements Behavior {
 
     private boolean suppressed = false;
     private Horizontal horizontal;
@@ -22,7 +22,7 @@ public class MoveBlack implements Behavior {
      * @param pres the pressure sensor
      */
     //TODO add constructor with motors and sensors as parameters
-    public MoveBlack(Horizontal hori, Vertical vertical, Claw claw, SenseColour col, Pressure pres)
+    public MoveBall(Horizontal hori, Vertical vertical, Claw claw, SenseColour col, Pressure pres)
     {
         this.horizontal = hori;
         this.vertical = vertical;
@@ -39,7 +39,7 @@ public class MoveBlack implements Behavior {
     @Override
     public boolean takeControl()
     {
-        return (colour.getColor() == 7) && (pressure.isPressed());
+        return ( colour.getColor() == 6 || colour.getColor() == 7 ) && (pressure.isPressed());
         //TODO add method to take control when SenseColor returns a black reading.
     }
 
@@ -56,15 +56,30 @@ public class MoveBlack implements Behavior {
     @Override
     public void action()
     {
+
         suppressed = false;
         horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
         claw.openClaw();
         vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
         claw.closeClaw();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        int ballColour = colour.getColor();
         vertical.changeElevation(CalibrationValues.MOVE_HEIGHT_VERT.getValue());
-
-        horizontal.rotateTo(CalibrationValues.BLACK_CUP_HORIZONTAL.getValue());
-
+        //TODO see if refactoring white and black behavior to single class breaks anything.
+        // Thought is that they're basically the exact same, but with different values for where the cup is.
+        // by refactoring, and using a second color check in the action to determine what color the ball is
+        // we might be able to eliminate the misreading of white balls as black when they're placed on the
+        // platform while the robot is in Wait behavior.
+        if(ballColour == 7) {
+            horizontal.rotateTo(CalibrationValues.BLACK_CUP_HORIZONTAL.getValue());
+        }
+        else if(ballColour == 6){
+            horizontal.rotateTo(CalibrationValues.WHITE_CUP_HORIZONTAL.getValue());
+        }
         vertical.changeElevation(CalibrationValues.CUP_VERT.getValue()); //lowers arm into cup
         claw.openClaw(); //drops ball
         suppressed = true;

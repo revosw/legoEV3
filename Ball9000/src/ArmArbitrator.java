@@ -32,8 +32,8 @@ public class ArmArbitrator {
     private Wait wait;
     private ArmCalibrate cali;
     private MoveHome home;
-    private MoveBlack black;
-    private MoveWhite white;
+    private MoveBall moveBall;
+    /*private MoveWhite white;*/
     private Stop stop;
 
     //behavior array
@@ -66,14 +66,14 @@ public class ArmArbitrator {
         // Behaviors
         wait = new Wait();
         cali = new ArmCalibrate();
-        white = new MoveWhite(horizontal, vertical, claw, colour, pressure);
-        black = new MoveBlack(horizontal, vertical, claw, colour, pressure);
+        /*white = new MoveWhite(horizontal, vertical, claw, colour, pressure);*/
+        moveBall = new MoveBall(horizontal, vertical, claw, colour, pressure);
         home = new MoveHome(pressure, horizontal, claw, vertical);
         stop = new Stop();
 
         // Behavior array
-        bArray = new Behavior[]{wait, home, black, white, cali, stop};
-
+        bArray = new Behavior[]{wait, home, moveBall, cali, stop};
+        /*white, UNCOMMENT TO END BLACK & WHITE REFACTOR TEST */
         //TODO should the Arbitrator be in its own class (nested class?),
         // with sensors and motors (or Behavior[]?) as construction parameters?
 
