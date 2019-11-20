@@ -10,7 +10,7 @@ import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 
 /**
- * The selection menu for starting robot functions
+ * The system loop of the Ball9000 robot arm.
  */
 public class ArmArbitrator {
 
@@ -139,7 +139,7 @@ public class ArmArbitrator {
             return (Button.ENTER.isDown());
         }
     /**
-     * moves all motors to their intended zeroing position
+     * Moves all motors to their intended zeroing positions
      */
         @Override
         public void action() {
@@ -147,6 +147,7 @@ public class ArmArbitrator {
             if(!suppressed) {
 
                 //calibrates vertical height
+                vertical.changeElevation(100);
                 while (colour.getDistance() < 0.7) {
                     vertical.moveArm(-300);
                 }

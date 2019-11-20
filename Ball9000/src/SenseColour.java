@@ -13,8 +13,6 @@ public class SenseColour
 {
     @SuppressWarnings("FieldCanBeLocal")
     private EV3ColorSensor colorSensor; // sensor for detecting ball color
-    private SampleProvider colorProvider;
-    private float[] colorSample;
 
     @SuppressWarnings("FieldCanBeLocal")
     private EV3ColorSensor distanceSensor; // sensor for measuring arm height
@@ -22,6 +20,11 @@ public class SenseColour
     private float[] distanceSample;
 
 
+    /**
+     * constructs a color sensor handler.
+     * @param colorPort the sensor for reading ball color
+     * @param distancePort the sensor for reading arm position
+     */
     public SenseColour(Port colorPort, Port distancePort)
     {
         // You don't need a sample provider to get a color, you can fetch directly with getColorID()

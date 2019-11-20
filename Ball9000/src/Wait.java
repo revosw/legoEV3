@@ -5,9 +5,9 @@ import lejos.robotics.subsumption.Behavior;
  */
 
 public class Wait implements Behavior {
+
     private boolean supressed = false;
 
-    //TODO add motors and sensors as parameters to constructor
     public Wait()
     {
 

@@ -1,5 +1,4 @@
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
 
 /**

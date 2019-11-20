@@ -1,5 +1,4 @@
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
-import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
 
 /**
@@ -21,44 +20,51 @@ public class Claw {
 
     }
 
-    public boolean findZero() {
-        claw.rotate(180); // closes claw completely
-        claw.resetTachoCount(); //resets tacho counter to 0 while claw is closed
-        return (claw.getTachoCount() == 0);
-    }
-
+    /**
+     * Calibrates the cllaw by rotating the claw motor until the motor stalls because the claw is closed,
+     * and then resets the tachometer in this position.
+     */
     public void stallAndReset()
     {
-        claw.setStallThreshold(3, 5); //sets low stall tolerance, to prevent overtightening of claw.
+        claw.setStallThreshold(3, 10); //sets low stall tolerance, to prevent overtightening of claw.
         while (!claw.isStalled()) {
-            claw.rotate(180, true);
+            claw.forward();
+            //if(claw.isStalled()){claw.stop();}
             System.out.println("claw is not stalled, rotating");
-        }
-        if(claw.isStalled()){
+        }//while
+
             claw.resetTachoCount();
+
             System.out.println("claw is stalled, resetting tacho");
             System.out.println("Claw tacho is: " + claw.getTachoCount());
-        }
-        claw.setStallThreshold(50, 1000);//sets stall tolerance back to default
+
+            claw.setStallThreshold(50, 1000);//sets stall tolerance back to default
     }
 
 
+    /**
+     * Opens the claw.
+     */
     public void openClaw() {
-        claw.rotateTo(-75);
+        claw.rotateTo(CalibrationValues.CLAW_OPEN.getValue());
         System.out.println("Claw open. Thacho is: " + claw.getTachoCount());
         // -75 degrees is approx. to open from completely closed
     }
+
+    /**
+     * Closes claw until motor stalls, and then stops motor movement to prevent gears from slipping
+     */
     public void closeClaw()
     {
-        // Cannot use isStalled, because motor does not actually stall when claw is
-        // closed, the motor just keeps spinning and grinding gears
-        //TODO remake this with a claw.forward and while not stalled
         claw.setStallThreshold(3, 10); //sets low stall tolerance, to prevent overtightening of claw.
-        while(!claw.isStalled() && claw.getTachoCount() < 0){
-            claw.rotateTo(0);
+
+        while(!claw.isStalled()){
+            claw.forward();
+            //if(claw.isStalled()){claw.stop();}
         }
-        claw.setStallThreshold(50, 1000); //sets stall tolerance back to default
         System.out.println("Claw closed.  Thacho is: " + claw.getTachoCount());
+
+        claw.setStallThreshold(50, 1000); //sets stall tolerance back to default
         //TODO find tacho count when stalled because of ball? THIS!!
     }
 
