@@ -146,16 +146,21 @@ public class ArmArbitrator {
             suppressed = false;
             if(!suppressed) {
 
-                claw.stallAndReset();
-                claw.openClaw();
+                //calibrates vertical height
                 while (colour.getDistance() < 0.7) {
                     vertical.moveArm(-300);
                 }
                 vertical.resetTacho();
                 vertical.stop();
+
+                //calibrates claw
+                claw.stallAndReset();
+                claw.openClaw();
+
                 //TODO add ball color calibration for startup
+                //calibrates rotational position
                 while(!pressure.isPressed()){
-                    horizontal.absoluteRotation(600); // rotate arm until button is pressed
+                    horizontal.rotateForward(); // rotate arm until button is pressed
                     if(pressure.isPressed()){ //if button is pressed while moving..
                         horizontal.haltHorizontal(); //.. then we stop arm rotation..
                         horizontal.resetTacho(); //.. and reset arm tacho to 0

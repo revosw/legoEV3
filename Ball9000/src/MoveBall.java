@@ -61,7 +61,13 @@ public class MoveBall implements Behavior {
         suppressed = false;
 
         while(!suppressed) {
-            horizontal.rotateTo(CalibrationValues.PLATFORM_HORIZONTAL.getValue()); //lines arm up in front of platform
+            //TODO change to while button is pressed??
+            while(pressure.isPressed()) {
+                horizontal.rotateBackwards(); //lines arm up in front of platform
+                //CalibrationValues.PLATFORM_HORIZONTAL.getValue()
+            }
+            horizontal.haltHorizontal(); //stop quickly if pressure button is not pressed
+
             vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
 
             try {
@@ -75,6 +81,7 @@ public class MoveBall implements Behavior {
                 continue;
             }
             claw.closeClaw(); //claw starts open, this closes it to grab ball
+
             vertical.changeElevation(CalibrationValues.MOVE_HEIGHT_VERT.getValue());
             //TODO see if refactoring white and black behavior to single class breaks anything.
             // Thought is that they're basically the exact same, but with different values for where the cup is.

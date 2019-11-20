@@ -17,6 +17,7 @@ public class Horizontal {
     public Horizontal(EV3LargeRegulatedMotor rotation) {
         horizontal = rotation;
         horizontal.setSpeed(CalibrationValues.MOVEMENT_SPEED.getValue());
+        horizontal.setAcceleration(CalibrationValues.MOVEMENT_ACCELERATION.getValue());
     }
 
     //TODO find acceleration values?
@@ -50,7 +51,23 @@ public class Horizontal {
      */
     public void haltHorizontal()
     {
+
         horizontal.stop();
+    }
+
+    /**
+     * Makes the robot arm rotate in the negative direction (towards the cups) until stopped
+     */
+    public void rotateBackwards()
+    {
+        horizontal.backward();
+    }
+
+    /**
+     * Makes the robot arm rotate in the positive direction (towards start position) until stopped.
+     */
+    public void rotateForward(){
+        horizontal.forward();
     }
 
     /**

@@ -56,26 +56,26 @@ public class MoveHome implements Behavior {
         vertical.changeElevation(0); //raises arm to highest position
 
 
+/*
         boolean startRotation = true;
+*/
         while (!this.suppressed) {
 
             //rotates arm back to known 0 position until suppressed
             // or interrupted by touch button
 
             //while touch is not pressed and suppressed = true
-            if (startRotation && !touch.isPressed()) {
-                horizontal.absoluteRotation(600);
-                startRotation = false;
+            while(/*startRotation &&*/ !touch.isPressed()) {
+                //horizontal.absoluteRotation(600);
+                horizontal.rotateForward();
+                /*startRotation = false;*/
             }
-
-
-
+            horizontal.haltHorizontal();
 
             // if touch is pressed
             if (touch.isPressed()) {
                 //touch button has been pressed.
                 //halts motor movement
-                horizontal.haltHorizontal();
                 //we are home, so we reset tacho to 0.
                 horizontal.resetTacho();
                 //calling resetTacho stops any motor movement

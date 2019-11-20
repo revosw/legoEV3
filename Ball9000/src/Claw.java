@@ -29,7 +29,7 @@ public class Claw {
 
     public void stallAndReset()
     {
-        claw.setStallThreshold(3, 10); //sets low stall tolerance, to prevent overtightening of claw.
+        claw.setStallThreshold(3, 5); //sets low stall tolerance, to prevent overtightening of claw.
         while (!claw.isStalled()) {
             claw.rotate(180, true);
             System.out.println("claw is not stalled, rotating");
@@ -52,7 +52,7 @@ public class Claw {
     {
         // Cannot use isStalled, because motor does not actually stall when claw is
         // closed, the motor just keeps spinning and grinding gears
-
+        //TODO remake this with a claw.forward and while not stalled
         claw.setStallThreshold(3, 10); //sets low stall tolerance, to prevent overtightening of claw.
         while(!claw.isStalled() && claw.getTachoCount() < 0){
             claw.rotateTo(0);
