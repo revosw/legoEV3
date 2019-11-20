@@ -54,7 +54,10 @@ public class SenseColour
     public int getColor()
     {
         colorProvider.fetchSample(colorSample, 0);
-        return Math.round(colorSample[0]);
+        return (int) colorSample[0];
     }
 
+    /**
+     * Get ambient light value, which tells if sensor is blocked by object or not
+     */
 }
