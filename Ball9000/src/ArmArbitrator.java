@@ -1,7 +1,11 @@
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.ev3.EV3;
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
+import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
+import lejos.robotics.RegulatedMotor;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 
@@ -10,6 +14,9 @@ import lejos.robotics.subsumption.Behavior;
  */
 public class ArmArbitrator {
 
+    private EV3MediumRegulatedMotor medium;
+    private EV3LargeRegulatedMotor arm;
+    private EV3LargeRegulatedMotor rotation;
     //brick
     private EV3 ev3;
 
@@ -26,6 +33,7 @@ public class ArmArbitrator {
     private Horizontal horizontal;
     private Vertical vertical;
     private Claw claw;
+    private RegulatedMotor[] syncedMotors;
 
     //behaviors
 
@@ -60,11 +68,15 @@ public class ArmArbitrator {
 
         //motor objects
         //TODO init motors here, and pass as param to motor class constructors
+        rotation = new EV3LargeRegulatedMotor(MotorPort.C);
+        arm = new EV3LargeRegulatedMotor(MotorPort.A);
+        syncedMotors = new RegulatedMotor[]{rotation, arm};
+        medium = new EV3MediumRegulatedMotor(MotorPort.B);
 
         //motors classes
-        vertical = new Vertical();
-        horizontal = new Horizontal();
-        claw = new Claw();
+        horizontal = new Horizontal(rotation);
+        vertical = new Vertical(arm);
+        claw = new Claw(medium);
 
 
         // Behaviors

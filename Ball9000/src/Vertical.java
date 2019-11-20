@@ -1,3 +1,4 @@
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
@@ -12,9 +13,10 @@ public class Vertical {
 
     /**
      * Horizontal class constructor.
+     * @param arm the motor that raises and lowers the arm
      */
-    public Vertical() {
-        vertical = new EV3MediumRegulatedMotor(MotorPort.A);
+    public Vertical(EV3LargeRegulatedMotor arm) {
+        vertical = arm;
         vertical.setSpeed(CalibrationValues.MOVEMENT_SPEED.getValue());
     }
 

@@ -12,9 +12,10 @@ public class Claw {
 
     /**
      * Constructor for Claw class.
+     * @param medium the medium motor that controls the claw
      */
-    public Claw() {
-        claw = new EV3MediumRegulatedMotor(MotorPort.B);
+    public Claw(EV3MediumRegulatedMotor medium) {
+        claw = medium;
         claw.setSpeed(CalibrationValues.MOVEMENT_SPEED.getValue());
 
 

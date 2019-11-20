@@ -12,9 +12,10 @@ public class Horizontal {
 
     /**
      * Horizontal class constructor.
+     * @param rotation the motor that rotates arm in the XY plane
      */
-    public Horizontal() {
-        horizontal = new EV3LargeRegulatedMotor(MotorPort.C);
+    public Horizontal(EV3LargeRegulatedMotor rotation) {
+        horizontal = rotation;
         horizontal.setSpeed(CalibrationValues.MOVEMENT_SPEED.getValue());
     }
 
