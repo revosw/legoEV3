@@ -62,12 +62,12 @@ public class MoveBall implements Behavior {
 
         while(!suppressed) {
 
+            int ballColour = colour.getColor();
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            int ballColour = colour.getColor();
 
             if (ballColour == Color.BLACK || ballColour == Color.WHITE) {
 
