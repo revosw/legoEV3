@@ -34,7 +34,7 @@ public class Claw {
         // closed, the motor just ke
         // eps spinning and grinding gears
 
-        claw.rotateTo(10);
+        claw.rotateTo(0);
 
         //TODO find tacho count when stalled because of ball?
 

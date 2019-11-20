@@ -50,16 +50,17 @@ public class MoveHome implements Behavior {
     @Override
     public void action()
     {
-        vertical.changeElevation(0);
         this.suppressed = false;
+        vertical.changeElevation(0); //raises arm to highest position
+        claw.closeClaw(); //closes claw
 
         boolean startRotation = true;
         while (!this.suppressed) {
 
-            //moves back to known 0 position until supressed
+            //rotates arm back to known 0 position until suppressed
             // or interrupted by touch button
 
-            //while touch is not pressed and supressed = true
+            //while touch is not pressed and suppressed = true
             if (startRotation && !touch.isPressed()) {
                 horizontal.absoluteRotation(600);
                 startRotation = false;

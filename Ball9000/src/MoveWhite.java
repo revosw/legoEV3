@@ -61,7 +61,7 @@ public class MoveWhite implements Behavior {
     {
         suppressed = false;
 
-        horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
+        horizontal.rotateTo(CalibrationValues.PLATFORM_HORIZONTAL.getValue()); // arm is centered to 0 at a position slightly to the right of the ball tray
         claw.openClaw();
         vertical.changeElevation(200); //moves arm down to ball height
         claw.closeClaw();
