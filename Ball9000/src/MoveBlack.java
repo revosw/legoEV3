@@ -59,13 +59,15 @@ public class MoveBlack implements Behavior {
         suppressed = false;
         horizontal.rotateTo(-20); // arm is centered to 0 at a position slightly to the right of the ball tray
         claw.openClaw();
-        vertical.changeElevation(200); //moves arm down to ball height
+        vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
         claw.closeClaw();
-        vertical.changeElevation(110);
-        horizontal.rotateTo(-600);
-        vertical.changeElevation(180); //lowers arm into cup
-        claw.openClaw(); //drops ball
+        vertical.changeElevation(CalibrationValues.MOVE_HEIGHT_VERT.getValue());
 
+        horizontal.rotateTo(CalibrationValues.BLACK_CUP_HORIZONTAL.getValue());
+
+        vertical.changeElevation(CalibrationValues.CUP_VERT.getValue()); //lowers arm into cup
+        claw.openClaw(); //drops ball
+        suppressed = true;
         /*TODO:
         1. lower arm
         2. grab ball

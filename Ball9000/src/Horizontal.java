@@ -15,7 +15,7 @@ public class Horizontal {
      */
     public Horizontal() {
         horizontal = new EV3LargeRegulatedMotor(MotorPort.C);
-        horizontal.setSpeed(300);
+        horizontal.setSpeed(CalibrationValues.MOVEMENT_SPEED.getValue());
     }
 
     //TODO find acceleration values?

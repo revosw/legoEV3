@@ -72,7 +72,7 @@ public class ArmArbitrator {
         stop = new Stop();
 
         // Behavior array
-        bArray = new Behavior[]{wait, home, white, black, cali, stop};
+        bArray = new Behavior[]{wait, home, black, white, cali, stop};
 
         //TODO should the Arbitrator be in its own class (nested class?),
         // with sensors and motors (or Behavior[]?) as construction parameters?
@@ -133,8 +133,9 @@ public class ArmArbitrator {
      */
         @Override
         public void action() {
+            suppressed = false;
             if(!suppressed) {
-                claw.findZero();
+                claw.stallAndReset();
                 while (colour.getDistance() < 0.7) {
                     vertical.moveArm(-300);
                 }
