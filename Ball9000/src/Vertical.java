@@ -16,6 +16,7 @@ public class Vertical {
     public Vertical(EV3LargeRegulatedMotor arm) {
         vertical = arm;
         vertical.setSpeed(CalibrationValues.MOVEMENT_SPEED.getValue());
+        vertical.setAcceleration(CalibrationValues.MOVEMENT_ACCELERATION.getValue());
     }
 
     //TODO find acceleration values?
@@ -62,6 +63,13 @@ public class Vertical {
         vertical.forward();
     }
 
+    /**
+    * Returns true if arm motor is stalled.
+     */
+    public boolean getArmStalled()
+    {
+        return vertical.isStalled();
+    }
     /**
      * Immediately stops all arm motor movements
      */

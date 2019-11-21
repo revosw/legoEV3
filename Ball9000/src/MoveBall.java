@@ -72,7 +72,10 @@ public class MoveBall implements Behavior {
             }//while
             horizontal.haltHorizontal(); //stop quickly if pressure button is not pressed
 
-            vertical.changeElevation(CalibrationValues.PLATFORM_VERT.getValue()); //moves arm down to ball height
+            while(colour.getDistance() > 0.25) {
+                vertical.lowerArm(); //moves arm down to ball height
+            }
+            vertical.stop();
 
             //wait for the color sensor to deliver a new reading before continuing
             try {
@@ -96,7 +99,13 @@ public class MoveBall implements Behavior {
             } else if (ballColour == Color.WHITE) { //if ball is white
                 horizontal.rotateTo(CalibrationValues.WHITE_CUP_HORIZONTAL.getValue());
             }
-            vertical.changeElevation(CalibrationValues.CUP_VERT.getValue()); //lowers arm into cup
+
+            while(colour.getDistance() > 0.35) {
+                vertical.lowerArm(); //moves arm down to ball height
+            }
+            vertical.stop();
+            //vertical.changeElevation(CalibrationValues.CUP_VERT.getValue()); //lowers arm into cup
+
             claw.openClaw(); //drops ball
             suppressed = true;
         }//while(!suppressed)

@@ -53,19 +53,26 @@ public class MoveHome implements Behavior {
     public void action()
     {
         this.suppressed = false;
-        vertical.changeElevation(0); //raises arm to highest position
 
+
+        //vertical.changeElevation(0); //raises arm to highest position
 
 /*
         boolean startRotation = true;
 */
         while (!this.suppressed) {
 
+            //raises arm up until light sensor detects it
+            while (colour.getDistance() < 0.6) {
+                vertical.raiseArm();
+            }
+            vertical.stop();
+
+
             //rotates arm back to known 0 position until suppressed
             // or interrupted by touch button
-
             //while touch is not pressed and suppressed = true
-            while(/*startRotation &&*/ !touch.isPressed()) {
+            while(!touch.isPressed()) {
                 //horizontal.absoluteRotation(600);
                 horizontal.rotateForward();
                 /*startRotation = false;*/
@@ -82,12 +89,7 @@ public class MoveHome implements Behavior {
                 this.suppress();
             } //if
 
-        }
-        //TODO should this be two whiles, for !suppressed and touch.pressed separately?
+        }//while
 
-
-        //TODO move arm back to home position, or until pressure sensor is pressed
-        // implement gyro and tachometer sensors, as well as pressure, for higher accuracy.
-        // possible to use pressure sensor as a way to calibrate gyro and tachometer?
     }//action
 }

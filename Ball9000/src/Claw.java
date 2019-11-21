@@ -16,7 +16,7 @@ public class Claw {
     public Claw(EV3MediumRegulatedMotor medium) {
         claw = medium;
         claw.setSpeed(CalibrationValues.MOVEMENT_SPEED.getValue());
-
+        claw.setAcceleration(CalibrationValues.MOVEMENT_ACCELERATION.getValue());
 
     }
 
@@ -62,6 +62,7 @@ public class Claw {
             claw.forward();
             //if(claw.isStalled()){claw.stop();}
         }
+        claw.stop();
         System.out.println("Claw closed.  Thacho is: " + claw.getTachoCount());
 
         claw.setStallThreshold(50, 1000); //sets stall tolerance back to default

@@ -148,11 +148,11 @@ public class ArmArbitrator {
 
                 //calibrates vertical height
                 vertical.changeElevation(100);
-                while (colour.getDistance() < 0.7) {
-                    vertical.moveArm(-300);
+                while (colour.getDistance() < 0.6) {
+                    vertical.raiseArm();
                 }
-                vertical.resetTacho();
                 vertical.stop();
+                vertical.resetTacho();
 
                 //calibrates claw
                 claw.stallAndReset();
